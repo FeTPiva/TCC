@@ -3,11 +3,11 @@ import string
 
 num_words = 0
 frequency = {}
-document_text = open('teste.txt', 'r')  # chamada do doc
+document_text = open('analisando.txt', 'r')  # chamada do doc
 # pega o conteudo do txt e transforma tudo em string com lower case
 text_string = document_text.read().lower()
 # delimitação do tamanho das palavras q for querer
-match_pattern = re.findall(r'\b[a-z]{3,15}\b', text_string)
+match_pattern = re.findall(r'\b[a-z]{2,22}\b', text_string)
 
 for word in match_pattern:
     count = frequency.get(word, 0)
@@ -16,18 +16,37 @@ for word in match_pattern:
 frequency_list = frequency.keys()
 
 for words in frequency_list:
-    print(words, frequency[words])
-palavra = input("Enter word to be searched:")
-#palavra = [palavras...]
-with open('teste.txt', 'r') as f:
+    print(words, frequency[words]) #isso aki printa a frequencia de cada palavra no texto
+
+#palavra = input("Enter word to be searched:")
+depressivoTxt = open('pronomes.txt', 'r') #abri a 'base' com as palavras que estou em busca no text a ser analisado
+depressivo = depressivoTxt.read()
+palavrasdepretxt = open('palavrasdepre.txt', 'r')
+palavrasdepre = palavrasdepretxt.read()
+print(palavrasdepre)
+
+#print(depressivo)
+#palavra2 = ["n", "vai", "ok", "então", "hmm"]
+#print("palavra2: ", len(palavra2))
+#print(palavra2)
+with open('analisando.txt', 'r') as f: #abrindo de novo o texto pra transformar ele em string e contar as palavras
     for line in f:
         words = line.split()
         num_words += len(words)
-        k = 0
-      #pt pra filtrar a palavra
-       #for j -> palavra.leght, i==palavra[j]
-       for i in words:
-            if(i == palavra):
+        k = 0 #somatorio 1
+        l = 0 #somatorio 2
+    # pt pra filtrar a palavra
+    for j in range(len(depressivo)):
+        for i in words:
+            if(i == depressivo[j]):
                 k = k+1
-print("Number of words:", num_words)
-print("Occurrences of the word:", k)
+    for a in range(len(depressivo)):
+        for m in words:
+            if(l == palavrasdepre[j]):
+                l = l+1
+print("Number of words:", num_words) #numero ttl de palavras no texto analisado
+print("Occurrences of words(pronomes):", k) #frequencia das palavras que eu busco
+print("porcentagem de palavras buscadas(pronomes):", (100*k)/num_words) #porcentagem
+print("Occurrences of words(depre):", l)
+print("porcentagem de palavras buscadas(depre):", (100*l)/num_words) 
+print("porcentagem TTL:", (100*(k+l)/num_words))
