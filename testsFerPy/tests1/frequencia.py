@@ -42,7 +42,7 @@ with open('analisando.txt', 'r') as f: #abrindo de novo o texto pra transformar 
                 k = k+1
     for a in range(len(depressivo)):
         for m in words:
-            if(l == palavrasdepre[j]):
+            if(m == palavrasdepre[j]):
                 l = l+1
 print("Number of words:", num_words) #numero ttl de palavras no texto analisado
 print("Occurrences of words(pronomes):", k) #frequencia das palavras que eu busco
