@@ -29,7 +29,7 @@ palavrasdepretxt.close()
 filtrotxt = open('filtro.txt', 'r')
 filtro = filtrotxt.read()
 filtrotxt.close()
-
+palavraTeste = 'eu'
 
 
 with open('analisando.txt', 'r') as f: #abrindo de novo o texto pra transformar ele em string e contar as palavras
@@ -39,12 +39,18 @@ with open('analisando.txt', 'r') as f: #abrindo de novo o texto pra transformar 
         k = 0 #somatorio 1
         l = 0 #somatorio 2
         x = 0
-      
-    # pt pra filtrar a palavra
-    for j in range(len(depressivo)):
-        for i in words:
-            if(i == depressivo[j]):
+
+    
+    
+        if palavraTeste in words :
                 k = k+1
+    
+    
+    # pt pra filtrar a palavra
+    #for j in range(len(depressivo)):
+     #   for i in words:
+      #      if(i == depressivo[j]):
+       #         k = k+1
     #for a in range(len(palavrasdepre)):
      #   for m in words:
       #      if(m == palavrasdepre[a]):
