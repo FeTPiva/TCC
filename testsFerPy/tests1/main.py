@@ -1,5 +1,5 @@
 import frequencia
 
-frequencia.calcFrequencia('analisando.txt')
+frequencia.calcFrequencia('analisando2.txt')
 
-print(frequencia.retornoFrequencia('analisando.txt'))
+print(frequencia.retornoFrequencia('analisando2.txt'))

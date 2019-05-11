@@ -10,6 +10,7 @@ def calcFrequencia(textoAnalisado):
     l = 0 #somatorio 2
     x = 0
     z = 0
+    y = 0
     with open(textoAnalisado, 'r') as document_text: # chamada do doc
 # pega o conteudo do txt e transforma tudo em string com lower case
         text_string = document_text.read().lower()
@@ -20,7 +21,7 @@ def calcFrequencia(textoAnalisado):
             count = frequency.get(word, 0)
             frequency[word] = count + 1
 
-        frequency_list = frequency.keys()
+        #frequency_list = frequency.keys()
     
     #for words1 in frequency_list:
         #print(words1, frequency[words1]) #isso aki printa a frequencia de cada palavra no texto
@@ -35,9 +36,12 @@ def calcFrequencia(textoAnalisado):
         filtrotxt = open('filtro.txt', 'r')
         filtro = filtrotxt.read()
         filtrotxt.close()
-        absolutatxt = open('filtro.txt', 'r')
+        absolutatxt = open('absoluta.txt', 'r')
         absoluta = absolutatxt.read()
         absolutatxt.close()
+        tristetxt = open('triste.txt', 'r')
+        triste = tristetxt.read()
+        tristetxt.close()
         palavraTeste = 'eu'
 
         document_text = open(textoAnalisado, 'r')
@@ -65,11 +69,13 @@ def calcFrequencia(textoAnalisado):
         for i in match_pattern :
             if i in absoluta:
                 z = z+1 
-    
+        for i in match_pattern :
+            if i in absoluta:
+                y = y+1 
    
             
     ttlwords = num_words-x
-    print(num_words, k, l, x, z )
+    print(num_words, k, l, x, z, y )
     print("Number of words (sem as stop words):", ttlwords) #numero ttl de palavras no texto analisado
     print("Occurrences of words(pronomes):", k) #frequencia das palavras que eu busco
     print("porcentagem de palavras buscadas(pronomes):", (100*k)/ttlwords) #porcentagem
@@ -77,7 +83,10 @@ def calcFrequencia(textoAnalisado):
     print("porcentagem de palavras buscadas(depre):", (100*l)/ttlwords) 
     print("Occurrences of words(absoluts):", z) 
     print("porcentagem de palavras buscadas(absoluts):", (100*z)/ttlwords) 
-    print("porcentagem TTL:", (100*(k+l+z)/ttlwords))  
+    print("Occurrences of words(tristes):", y) 
+    print("porcentagem de palavras buscadas(tristes):", (100*y)/ttlwords) 
+    
+    print("porcentagem TTL:", (100*(k+l+z+y)/ttlwords))  
     
 
 
@@ -90,6 +99,7 @@ def retornoFrequencia(textoAnalisado):
     l = 0 #somatorio 2
     x = 0
     z = 0
+    y = 0
     with open(textoAnalisado, 'r') as document_text: # chamada do doc
 # pega o conteudo do txt e transforma tudo em string com lower case
         text_string = document_text.read().lower()
@@ -115,9 +125,12 @@ def retornoFrequencia(textoAnalisado):
         filtrotxt = open('filtro.txt', 'r')
         filtro = filtrotxt.read()
         filtrotxt.close()
-        absolutatxt = open('filtro.txt', 'r')
+        absolutatxt = open('absoluta.txt', 'r')
         absoluta = absolutatxt.read()
         absolutatxt.close()
+        tristetxt = open('triste.txt', 'r')
+        triste = tristetxt.read()
+        tristetxt.close()
         palavraTeste = 'eu'
 
         document_text = open(textoAnalisado, 'r')
@@ -145,8 +158,12 @@ def retornoFrequencia(textoAnalisado):
         for i in match_pattern :
             if i in absoluta:
                 z = z+1 
+
+        for i in match_pattern :
+            if i in absoluta:
+                y = y+1 
                    
     ttlwords = num_words-x
   
 
-    return (k+l+z)/ttlwords 
+    return (k+l+z+y)/ttlwords 
