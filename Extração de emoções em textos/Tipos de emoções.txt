@@ -1,0 +1,8 @@
+Existem seis tipos emoções básicas descritas por Paul Ekman e Wallace Friesen [EKMAN e FRIESEN, 1978]
+
+- Alegria
+- Raiva
+- Tristeza
+- Desgosto
+- Medo
+- Surpresa
