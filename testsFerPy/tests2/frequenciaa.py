@@ -21,6 +21,22 @@ def common_elements3(list1, list2):
 
     return list(set(list1) & set(list2))
 
+def retornaStem(stringao):
+    i = 0
+    stemao = ''
+    lista2 = []
+    tamanho = 0
+    stemmer = nltk.stem.RSLPStemmer()
+    listao = re.findall(r'\b[a-z]{2,22}\b', stringao)
+    tamanho = len(listao)
+   
+    for word in listao :
+        stemao = stemmer.stem(word)     
+        for k in stemao:
+            lista2.append(k)
+        
+    return lista2
+
 def retornoFrequenciaa(minhaString):
     num_words = 0 #int
     frequency = {} #list
@@ -69,23 +85,24 @@ def retornoFrequenciaa(minhaString):
     num_words = len(listTextoAlvo)
         
     #FORZAO
-    for word_textoAlvo in listTextoAlvo:
-        stemListTextoAlvo = stemmer.stem(word_textoAlvo)
+    #for word_textoAlvo in listTextoAlvo:
+     #   stemListTextoAlvo = stemmer.stem(word_textoAlvo)
         #
                  
-        for word_pronome in listPronome :
-            stemPronome = stemmer.stem(word_pronome)
+      #  for word_pronome in listPronome :
+       #     stemPronome = stemmer.stem(word_pronome)
             #print(stemPronome)
             
-            k = common_elements(stemListTextoAlvo, stemPronome)
-            
-       
-    x = common_elements(listFiltro, stemListTextoAlvo)   
-    print(stemListTextoAlvo)                         
-    print(k)
-    print(x)
-    print(listFiltro)
-    print(listPronome)
-    print(listTextoAlvo)
-    return print(k/num_words)
+        #    k = common_elements(stemListTextoAlvo, stemPronome)
+    a = retornaStem(text_string)        
+    print(a)   
+    #x = common_elements(listFiltro, stemListTextoAlvo)   
+    #print(stemListTextoAlvo)                         
+    #print(k)
+    #print(x)
+    #print(listFiltro)
+    #print(listPronome)
+    #print(listTextoAlvo)
+    #return print(k/num_words)
+    return a
 

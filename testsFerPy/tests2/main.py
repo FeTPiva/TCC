@@ -10,3 +10,4 @@ with open(textoAnalisado, 'r') as document_text:
 
 frequenciaa.retornoFrequenciaa(minhaString)
 
+ 
