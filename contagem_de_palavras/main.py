@@ -2,7 +2,7 @@ import contagem
 import re
 import string
 
-textoAnalisado = 'analisando.txt'
+textoAnalisado = 'teste1.txt'
 pronome = 'pronomes.txt'
 absoluta = 'absoluta.txt'
 triste = 'triste.txt'

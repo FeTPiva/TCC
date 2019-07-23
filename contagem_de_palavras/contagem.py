@@ -44,7 +44,7 @@ def contandoCoisas(stringao, arquivo2):
     stringao = Stemming(stringao)
 
     #PRINTANDO
-    print(pronome)
+    #print(pronome)
     #print(filtro)
     #print(stringao)
 
