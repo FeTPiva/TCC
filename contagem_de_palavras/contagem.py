@@ -16,49 +16,49 @@ def Stemming(sentence):
     return phrase
 
 
-def contandoCoisas(stringao, arquivo2):
+def contandoCoisas(texto, palavrasArq):
 
-    #TTL PRONOMES
+    #TTL palavras sendo buscadas
     p = 0
     #TTL STOPWORDS
     s = 0
     
     #PRONOMES
-    pronomeTxt = open(arquivo2, 'r') #abri a 'base' com as palavras que estou em busca no text a ser analisado
-    pronome = pronomeTxt.read()
-    pronomeTxt.close()
+    palavraTXT = open(palavrasArq, 'r') #abri a 'base' com as palavras que estou em busca no text a ser analisado
+    palavra = palavraTXT.read()
+    palavraTXT.close()
     
     #STOP WORDS PERSONALIZADAS
-    filtrotxt = open('filtro.txt', 'r')
-    filtro = filtrotxt.read()
-    filtrotxt.close()
+    stoptxt = open('filtro.txt', 'r')
+    stop = stoptxt.read()
+    stoptxt.close()
 
     #TOKENIZANDO
-    pronome = Tokenize(pronome)
-    filtro = Tokenize(filtro)
-    stringao = Tokenize(stringao)
+    palavra = Tokenize(palavra)
+    stop = Tokenize(stop)
+    texto = Tokenize(texto)
 
     #Stemmando
-    pronome = Stemming(pronome)
-    filtro = Stemming(filtro)
-    stringao = Stemming(stringao)
+    palavra = Stemming(palavra)
+    stop = Stemming(stop)
+    texto = Stemming(texto)
 
     #PRINTANDO
     #print(pronome)
     #print(filtro)
-    print(stringao)
+    #print(stringao)
 
     #CONTANDO COISAS EFETIVAMENTE
-    for i in stringao :
-        if i in pronome :
+    for i in texto :
+        if i in palavra :
             p = p+1 
 
-    for i in stringao :
-        if i in filtro :
+    for i in texto :
+        if i in stop :
             s +=1 
      
     #TOTAL DE PALAVRAS
-    ttlwords = len(stringao)
+    ttlwords = len(texto)
     
     #MENOS AS STOP WORDS
     ttlwords = ttlwords - s
