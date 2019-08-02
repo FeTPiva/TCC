@@ -46,7 +46,7 @@ def contandoCoisas(stringao, arquivo2):
     #PRINTANDO
     #print(pronome)
     #print(filtro)
-    #print(stringao)
+    print(stringao)
 
     #CONTANDO COISAS EFETIVAMENTE
     for i in stringao :
