@@ -16,17 +16,17 @@ def Stemming(sentence):
     return phrase
 
 
-def contandoCoisas(texto, palavrasArq):
+def contandoCoisas(texto, arquivo):
 
-    #TTL palavras sendo buscadas
+    #TTL palavraS
     p = 0
     #TTL STOPWORDS
     s = 0
     
-    #PRONOMES
-    palavraTXT = open(palavrasArq, 'r') #abri a 'base' com as palavras que estou em busca no text a ser analisado
-    palavra = palavraTXT.read()
-    palavraTXT.close()
+    #palavraS
+    palavraTxt = open(arquivo, 'r') #abri a 'base' com as palavras que estou em busca no text a ser analisado
+    palavra = palavraTxt.read()
+    palavraTxt.close()
     
     #STOP WORDS PERSONALIZADAS
     stoptxt = open('filtro.txt', 'r')
@@ -44,9 +44,9 @@ def contandoCoisas(texto, palavrasArq):
     texto = Stemming(texto)
 
     #PRINTANDO
-    #print(pronome)
-    #print(filtro)
-    #print(stringao)
+    #print(palavra)
+    #print(stop)
+    #print(texto)
 
     #CONTANDO COISAS EFETIVAMENTE
     for i in texto :
@@ -63,7 +63,10 @@ def contandoCoisas(texto, palavrasArq):
     #MENOS AS STOP WORDS
     ttlwords = ttlwords - s
 
-    print(p)
+    
     #print(s)
     #print('ttlwords', ttlwords)
-    return print(p/ttlwords)
+    return p/ttlwords
+
+def contandoCoisasPrint(texto, arquivo):
+    return print(contandoCoisas(texto, arquivo))
