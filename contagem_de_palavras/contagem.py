@@ -29,7 +29,7 @@ def contandoCoisas(texto, arquivo):
     palavraTxt.close()
     
     #STOP WORDS PERSONALIZADAS
-    stoptxt = open('filtro.txt', 'r')
+    stoptxt = open('contagem_de_palavras/filtro.txt', 'r')
     stop = stoptxt.read()
     stoptxt.close()
 

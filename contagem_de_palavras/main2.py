@@ -8,9 +8,9 @@ import csv
 #https://stackoverflow.com/questions/28277150/write-a-list-in-a-python-csv-file-one-new-row-per-list
 
 #textoAnalisado = 'teste1.txt'
-pronome = 'pronomes.txt'
-absoluta = 'absoluta.txt'
-triste = 'triste.txt'
+pronome = 'contagem_de_palavras/pronomes.txt'
+absoluta = 'contagem_de_palavras/absoluta.txt'
+triste = 'contagem_de_palavras/triste.txt'
 superString = []
 primeiroParse = {}
 
@@ -29,11 +29,11 @@ def criaLista(val1, val2, val3, val4):
 #depressividade = meuDic["isDepressivo"]
 
 #print(textoAnalisado,depressividade)
-mylist = dictemp.enviaFraseProcessada()
-a = mylist[0]
-b= mylist[1]
-txta = a["texto"]
-txtb = b["texto"]
+#mylist = dictemp.enviaFraseProcessada()
+#a = mylist[0]
+#b= mylist[1]
+#txta = a["texto"]
+#txtb = b["texto"]
 #print(txta)
 #print(txtb)
 #for x in mylist:
@@ -47,19 +47,21 @@ c = retornaTamanho()
 x=0
 
 while x < c:
+    mylist = dictemp.enviaFraseProcessada()
     primeiroParse = mylist[x]
-    #print(primeiroParse)
+    print(primeiroParse)
     segundoParse = primeiroParse["texto"]
-    #print(segundoParse)
+    print(segundoParse)
+
     textoTratado1 = contagem.contandoCoisas(segundoParse,pronome)
     textoTratado2 = contagem.contandoCoisas(segundoParse,absoluta)
     textoTratado3 = contagem.contandoCoisas(segundoParse,triste)
     idDepre = primeiroParse["isDepressivo"]
-    #print(textoTratado1, textoTratado2, textoTratado3, idDepre)
+    print(textoTratado1, textoTratado2, textoTratado3, idDepre)
     lista = criaLista(textoTratado1, textoTratado2, textoTratado3, idDepre)
     print(lista)
     #esse aki insere uma linha só
-    with open('teste.csv', 'a', newline = '') as myfile:
+    with open('csv/contagem.csv', 'a', newline = '') as myfile:
         wr = csv.writer(myfile)
         wr.writerow(lista)
 

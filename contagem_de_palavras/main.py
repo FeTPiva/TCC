@@ -2,10 +2,10 @@ import contagem
 import re
 import string
 
-textoAnalisado = 'analisando.txt'
-pronome = 'pronomes.txt'
-absoluta = 'absoluta.txt'
-triste = 'triste.txt'
+textoAnalisado = 'contagem_de_palavras/analisando.txt'
+pronome = 'contagem_de_palavras/pronomes.txt'
+absoluta = 'contagem_de_palavras/absoluta.txt'
+triste = 'contagem_de_palavras/triste.txt'
 
 
 # chamada do doc - temp ate a pt do Felipe ficar ok
