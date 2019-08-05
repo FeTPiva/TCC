@@ -1,6 +1,6 @@
 # coding: utf-8
+#nltk.download()
 import nltk
-import csv
 
 basetreinamento = [('você e abominável','desgosto'),
 ('abomino a maneira como você age','desgosto'),
@@ -92,7 +92,6 @@ basetreinamento = [('você e abominável','desgosto'),
 ('rancoroso e reprimido','desgosto'),
 ('não há animal mais degradante, estúpido, covarde, lamentável, egoísta, rancoroso e invejoso do que o homem','desgosto'),
 ('o virulento debate ente políticos','desgosto'),
-
 ('por favor não me abandone','tristeza'),
 ('não quero ficar sozinha','tristeza'),
 ('não me deixe sozinha','tristeza'),
@@ -177,7 +176,6 @@ basetreinamento = [('você e abominável','desgosto'),
 ('passamos ao desalento e a loucura','tristeza'),
 ('aquele que nunca viu a tristeza nunca reconhecerá a alegria','tristeza'),
 ('cuidado com a tristeza ela e um vicio','tristeza'),
-
 ('eu imploro, não me matem!','medo'),
 ('tem certeza que não e perigoso?','medo'),
 ('não tenho certeza se e seguro','medo'),
@@ -262,10 +260,10 @@ basetreinamento = [('você e abominável','desgosto'),
 ('seu políticos usam suas forças para afugentar e amedrontar o povo','medo'),
 ('o objetivo disso e apenas me amedrontar mais','medo'),
 ('isso me apavora','medo')]
-'''
-for line in open('base treinamento.txt', 'r'):
-    basetreinamento.append(line.strip())
-''' 
+
+#for line in open('base treinamento.txt', 'r'):
+#    basetreinamento.append(line.strip())
+ 
 baseteste = [('o mundo e feio como o pecado','desgosto'),
 ('a coisa mais difícil de esconder e aquilo que não existe','desgosto'),
 ('você errou feio aquele gol','desgosto'),
@@ -376,21 +374,18 @@ baseteste = [('o mundo e feio como o pecado','desgosto'),
 ('e abominável o que fazem com os animais','medo'),
 ('foi terrível o tigre quase o matou','medo'),
 ('me advertiram sobre isso','medo')]
-'''
-for line in open('base teste.txt', 'r'):
-    baseteste.append(line.strip())
-'''
+#for line in open('base teste.txt', 'r'):
+#    baseteste.append(line.strip())
+ 
+
+#print(basetreinamento)
+#print(baseteste)
+
 stopwordsnltk = nltk.corpus.stopwords.words('portuguese')
-stopwordsnltk.append('vou')
-stopwordsnltk.append('tão')
+#print(stopwordsnltk)
 
-def removestopwords(texto):
-    frases = []
-    for (palavras, emocao) in texto:
-        semstop = [p for p in palavras.split() if p not in stopwordsnltk]
-        frases.append((semstop, emocao))
-    return frases
 
+#Aplica o Stemming e retira as stopwords
 def aplicastemmer(texto):
     stemmer = nltk.stem.RSLPStemmer()
     frasessstemming = []
@@ -399,20 +394,44 @@ def aplicastemmer(texto):
         frasessstemming.append((comstemming, emocao))
     return frasessstemming
 
+frasescomstemmingtreinamento = aplicastemmer(basetreinamento)
+frasescomstemmingteste = aplicastemmer(baseteste)
+print(frasescomstemmingtreinamento)
+
+
+#busca as palavras separadas com stemmer
 def buscapalavras(frases):
     todaspalavras = []
     for (palavras, emocao) in frases:
         todaspalavras.extend(palavras)
     return todaspalavras
 
+palavrastreinamento = buscapalavras(frasescomstemmingtreinamento)
+palavrasteste = buscapalavras(frasescomstemmingteste)
+#print(palavras)
+
+
+#mostra freq das palavras com stemmer
 def buscafrequencia(palavras):
     palavras = nltk.FreqDist(palavras)
     return palavras
 
+frequenciatreinamento = buscafrequencia(palavrastreinamento)
+frequenciateste = buscafrequencia(palavrasteste)
+#print(frequencia.most_common(50))
+
+
+#mostra as palavras unicas 
 def buscapalavrasunicas(frequencia):
     freq = frequencia.keys()
     return freq
 
+palavrasunicastreinamento = buscapalavrasunicas(frequenciatreinamento)
+palavrasunicasteste = buscapalavrasunicas(frequenciateste)
+#print(palavrasunicastreinamento)
+
+
+#extrai a palavra da frase que é passada e compara com a base
 def extratorpalavras(documento):
     doc = set(documento)
     caracteristicas = {}
@@ -420,30 +439,29 @@ def extratorpalavras(documento):
         caracteristicas['%s' % palavras] = (palavras in doc)
     return caracteristicas
 
-
-frasescomstemmingtreinamento = aplicastemmer(basetreinamento)
-frasescomstemmingteste = aplicastemmer(baseteste)
-
-palavrastreinamento = buscapalavras(frasescomstemmingtreinamento)
-palavrasteste = buscapalavras(frasescomstemmingteste)
-
-frequenciatreinamento = buscafrequencia(palavrastreinamento)
-frequenciateste = buscafrequencia(palavrasteste)
-
-palavrasunicastreinamento = buscapalavrasunicas(frequenciatreinamento)
-palavrasunicasteste = buscapalavrasunicas(frequenciateste)
+#caracteristicasfrase = extratorpalavras(['am', 'nov', 'dia'])
+#print(caracteristicasfrase)
 
 basecompletatreinamento = nltk.classify.apply_features(extratorpalavras, frasescomstemmingtreinamento)
 basecompletateste = nltk.classify.apply_features(extratorpalavras, frasescomstemmingteste)
+#print(basecompleta[15])
 
 # constroi a tabela de probabilidade
 classificador = nltk.NaiveBayesClassifier.train(basecompletatreinamento)
+print(classificador.labels())
+#print(classificador.show_most_informative_features(20))
+
+print(nltk.classify.accuracy(classificador, basecompletateste))
 
 erros = []
 for (frase, classe) in basecompletateste:
+    #print(frase)
+    #print(classe)
     resultado = classificador.classify(frase)
     if resultado != classe:
         erros.append((classe, resultado, frase))
+#for (classe, resultado, frase) in erros:
+#    print(classe, resultado, frase)
 
 from nltk.metrics import ConfusionMatrix
 esperado = []
@@ -454,30 +472,30 @@ for (frase, classe) in basecompletateste:
     esperado.append(classe)
 
 matriz = ConfusionMatrix(esperado, previsto)
+print(matriz)
 
-#Aqui vai a frase processada pelo felipe
-fraseteste = 'Meu dia não foi bom, gostaria de estar sozinho no meu quarto'
+teste = 'eu sinto amor por voce'
 testestemming = []
 stemmer = nltk.stem.RSLPStemmer()
-
-for (palavrastreinamento) in fraseteste.split():
+for (palavrastreinamento) in teste.split():
     comstem = [p for p in palavrastreinamento.split()]
     testestemming.append(str(stemmer.stem(comstem[0])))
+#print(testestemming)
 
 novo = extratorpalavras(testestemming)
+#print(novo)
 
+#print(classificador.classify(novo))
 distribuicao = classificador.prob_classify(novo)
-
-dictemocao = {'alegria':1,'raiva':2,'tristeza':3,'desgosto':4,'medo':5,'surpresa':6,'neutro':7}
-
-#Vetor para saida
-vetorsaida = []
 for classe in distribuicao.samples():
-    vetorsaida.append("%s, %f" % (dictemocao.get(classe), distribuicao.prob(classe)))
+   print("%s: %f" % (classe, distribuicao.prob(classe)))
 
-#Importar resultado para csv
-with open('saida.csv', 'w') as csvfile:   
-    writer = csv.writer(csvfile) 
-    writer.writerow(vetorsaida)
+
+
+
+
+
+
+
 
 
