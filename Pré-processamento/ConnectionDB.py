@@ -24,12 +24,13 @@ def totalPessoas():		#Fernanda
 def obterLinhaFrase(idTexto):  #Vinicius
 	data = []
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto FROM textodepressao WHERE idTexto = " + str(idTexto))
+	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idTexto = " + str(idTexto))
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
 		jsonData = {
-			"texto": x_correto
+			"texto": x_correto,
+			"isDepressivo": x[1]
 		}
 		data.append(jsonData)
 	return data
@@ -63,4 +64,8 @@ a = totalTextos()
 for x in range(1,a+1):
 	print(obterLinhaFrase(x))
 '''
+
+a = totalTextos()
+for x in range(1,a+1):
+	print(obterLinhaFrase(x))
 
