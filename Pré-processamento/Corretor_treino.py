@@ -3,7 +3,7 @@ import requests
 import os
 
 print('Loading dictionary')
-file = open('C:/Users/felip/Desktop/Faculdade/TCC/Palavras-pt.txt','r')
+file = open('C:/Users/felip/Desktop/Faculdade/TCC/TCC/Pré-processamento/Palavras-pt.txt','r', encoding="utf8")
 r = file.read()
 print('Dictionary loaded successfully')
 
