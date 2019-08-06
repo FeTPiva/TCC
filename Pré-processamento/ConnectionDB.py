@@ -1,5 +1,5 @@
 import mysql.connector
-import Corretor 
+import Corretor
 # Conexao com Banco de Dados
 mydb = mysql.connector.connect(
 host="localhost",
@@ -8,16 +8,23 @@ passwd="root",
 database="depressao"
 )
 	
+
+def totalTextos():
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT COUNT(idTexto) FROM textodepressao");
+	myresult = mycursor.fetchone()
+	return myresult[0]
+	
 def totalPessoas():		#Fernanda
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT COUNT(idPessoa) FROM Pessoa");
 	myresult = mycursor.fetchone()
 	return myresult[0]
 
-def obterLinhaFrase(idPessoa):  #Vinicius
+def obterLinhaFrase(idTexto):  #Vinicius
 	data = []
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto FROM textodepressao WHERE idPessoa = " + str(idPessoa))
+	mycursor.execute("SELECT texto FROM textodepressao WHERE idTexto = " + str(idTexto))
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
@@ -51,8 +58,9 @@ while y <= z:
 	y+=1
 '''
 
-
-for i in total:
-	print(obterLinhaFrase(1))
-
+''' Vinicius Teste
+a = totalTextos()
+for x in range(1,a+1):
+	print(obterLinhaFrase(x))
+'''
 

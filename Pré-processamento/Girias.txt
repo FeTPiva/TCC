@@ -5,9 +5,6 @@ flw,tchau
 flws,tchau
 blz,beleza
 ok,certo
-13,doido
-24,homossexual
-38,arma
 171,mentiroso
 bagulho,objeto
 balada,festa
