@@ -17,13 +17,12 @@ def totalPessoas():		#Fernanda
 def obterLinhaFrase(idPessoa):  #Vinicius
 	data = []
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto,isDepressivo FROM textodepressao WHERE idPessoa = " + str(idPessoa))
+	mycursor.execute("SELECT texto FROM textodepressao WHERE idPessoa = " + str(idPessoa))
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
 		jsonData = {
-			"texto": x_correto,
-			"isDepressivo": x[1]
+			"texto": x_correto
 		}
 		data.append(jsonData)
 	return data
@@ -52,6 +51,8 @@ while y <= z:
 	y+=1
 '''
 
-#print(obterLinhaFrase(1))
+
+for i in total:
+	print(obterLinhaFrase(1))
 
 
