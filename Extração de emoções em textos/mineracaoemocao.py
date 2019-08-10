@@ -473,7 +473,9 @@ dictemocao = {'alegria':1,'raiva':2,'tristeza':3,'desgosto':4,'medo':5,'surpresa
 #Vetor para saida
 vetorsaida = []
 for classe in distribuicao.samples():
-    vetorsaida.append("%s, %f" % (dictemocao.get(classe), distribuicao.prob(classe)))
+    vetorsaida.append(dictemocao.get(classe))
+    vetorsaida.append(distribuicao.prob(classe))
+print(vetorsaida)
 
 #Importar resultado para csv
 with open('saida.csv', 'w') as csvfile:   
