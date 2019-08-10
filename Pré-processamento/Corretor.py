@@ -5,7 +5,7 @@ from nltk.tokenize.treebank import TreebankWordDetokenizer
 spell = SpellCorrector()
 
 def estaNoDicionario(palavra):
-	file = open('C:/Users/felip/Desktop/Faculdade/TCC/TCC/Pré-processamento/Palavras-pt.txt','r', encoding="utf8")
+	file = open('Pré-processamento/Palavras-pt.txt','r', encoding="utf8")
 	r = file.read()
 	dictionary = r.lower().split("\n")
 	for y in dictionary:
@@ -15,7 +15,7 @@ def estaNoDicionario(palavra):
 
 def retornaCorrecaoGiria(palavra):
 	giria_formatada=palavra
-	file = open('C:/Users/felip/Desktop/Faculdade/TCC/TCC/Pré-processamento/Girias.txt','r', encoding="utf8")
+	file = open('Pré-processamento/Girias.txt','r', encoding="utf8")
 	r = file.read()
 	dictionary = r.lower().split("\n")
 	for z in dictionary:
