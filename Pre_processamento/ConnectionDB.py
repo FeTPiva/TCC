@@ -1,5 +1,5 @@
 import mysql.connector
-import Corretor
+import Pre_processamento.Corretor as Corretor
 # Conexao com Banco de Dados
 mydb = mysql.connector.connect(
 host="localhost",
@@ -7,7 +7,7 @@ user="root",
 passwd="senha666",
 database="depressao"
 )
-	
+data = []	
 
 def totalTextos():
 	mycursor = mydb.cursor()
@@ -36,7 +36,7 @@ def obterLinhaFrase(idTexto):  #Vinicius
 	return data
 
 def obterLinhaTexto(idPessoa):  #Fernanda
-	data = []
+	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
@@ -49,23 +49,24 @@ def obterLinhaTexto(idPessoa):  #Fernanda
 		data.append(jsonData)
 	return data
 		
-'''  Fernanda teste
-data = []
+ #Fernanda teste
+'''data = []
 y=1
 z = totalPessoas()
 print(z)
 while y <= z:
 	print(obterLinhaTexto(y))
 	y+=1
-'''
 
+'''
 ''' Vinicius Teste
 a = totalTextos()
 for x in range(1,a+1):
 	print(obterLinhaFrase(x))
 '''
 
-a = totalTextos()
+'''a = totalTextos()
 for x in range(1,a+1):
 	print(obterLinhaFrase(x))
 
+'''

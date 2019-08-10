@@ -5,6 +5,8 @@ import dictemp
 import operator
 import csv
 
+#from .TCC.Pre_processamento.ConnectionDB import totalPessoas
+
 #https://stackoverflow.com/questions/28277150/write-a-list-in-a-python-csv-file-one-new-row-per-list
 
 #textoAnalisado = 'teste1.txt'
