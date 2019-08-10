@@ -4,7 +4,7 @@ import Pre_processamento.Corretor as Corretor
 mydb = mysql.connector.connect(
 host="localhost",
 user="root",
-passwd="senha666",
+passwd="",
 database="depressao"
 )
 data = []	
