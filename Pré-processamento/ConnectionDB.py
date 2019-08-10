@@ -4,20 +4,20 @@ import Corretor
 mydb = mysql.connector.connect(
 host="localhost",
 user="root",
-passwd="root",
+passwd="senha666",
 database="depressao"
 )
 	
 
 def totalTextos():
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT COUNT(idTexto) FROM textodepressao");
+	mycursor.execute("SELECT COUNT(idTexto) FROM textodepressao")
 	myresult = mycursor.fetchone()
 	return myresult[0]
 	
 def totalPessoas():		#Fernanda
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT COUNT(idPessoa) FROM Pessoa");
+	mycursor.execute("SELECT COUNT(idPessoa) FROM Pessoa")
 	myresult = mycursor.fetchone()
 	return myresult[0]
 
@@ -36,7 +36,7 @@ def obterLinhaFrase(idTexto):  #Vinicius
 	return data
 
 def obterLinhaTexto(idPessoa):  #Fernanda
-	
+	data = []
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
