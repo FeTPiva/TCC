@@ -483,3 +483,6 @@ with open('saida.csv', 'w') as csvfile:
     writer.writerow(vetorsaida)
 
 
+
+
+
