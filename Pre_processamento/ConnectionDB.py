@@ -1,10 +1,11 @@
 import mysql.connector
 import Pre_processamento.Corretor as Corretor
 # Conexao com Banco de Dados
+
 mydb = mysql.connector.connect(
 host="localhost",
 user="root",
-passwd="",
+passwd="root",
 database="depressao"
 )
 data = []	
@@ -15,11 +16,12 @@ def totalTextos():
 	myresult = mycursor.fetchone()
 	return myresult[0]
 	
-def totalPessoas():		#Fernanda
+def totalPessoas():
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT COUNT(idPessoa) FROM Pessoa")
 	myresult = mycursor.fetchone()
 	return myresult[0]
+
 
 def obterLinhaFrase(idTexto):  #Vinicius
 	data = []
@@ -35,6 +37,7 @@ def obterLinhaFrase(idTexto):  #Vinicius
 		data.append(jsonData)
 	return data
 
+
 def obterLinhaTexto(idPessoa):  #Fernanda
 	
 	mycursor = mydb.cursor()
@@ -48,25 +51,4 @@ def obterLinhaTexto(idPessoa):  #Fernanda
 		}
 		data.append(jsonData)
 	return data
-		
- #Fernanda teste
-'''data = []
-y=1
-z = totalPessoas()
-print(z)
-while y <= z:
-	print(obterLinhaTexto(y))
-	y+=1
-
-'''
-''' Vinicius Teste
-a = totalTextos()
-for x in range(1,a+1):
-	print(obterLinhaFrase(x))
-'''
-
-'''a = totalTextos()
-for x in range(1,a+1):
-	print(obterLinhaFrase(x))
-
 '''
