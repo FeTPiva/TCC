@@ -48,10 +48,10 @@ while x < c:
     x+=1
 
 linhasTabela = ConnectionDB.totalTextos()
-i=1
+i=0
 while i <= linhasTabela:
-    mylist = ConnectionDB.obterLinhaFrase(i)
-    primeiroParse = mylist[0]
+    mylist = ConnectionDB.obterLinhaFrase(i+1)
+    primeiroParse = mylist[i]
     segundoParse = primeiroParse["texto"]
     fraseteste = segundoParse
     print(fraseteste)

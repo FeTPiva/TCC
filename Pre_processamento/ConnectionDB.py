@@ -5,7 +5,7 @@ import Pre_processamento.Corretor as Corretor
 mydb = mysql.connector.connect(
 host="localhost",
 user="root",
-passwd="root",
+passwd="senha666",
 database="depressao"
 )
 data = []	
@@ -51,4 +51,17 @@ def obterLinhaTexto(idPessoa):  #Fernanda
 		}
 		data.append(jsonData)
 	return data
-'''
+
+#retorno geral de textos
+def retornaNTextos(idPessoa, nTextos):
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa,nTextos)) 
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])
+		jsonData = {
+			"texto": x_correto,
+			"isDepressivo": x[1]
+		}
+		data.append(jsonData)
+	return data
