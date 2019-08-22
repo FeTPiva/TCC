@@ -60,7 +60,7 @@ def extratorpalavras(documento):
 def retornaEmocoes(idPessoa, nTextos):
     dictemocao = {'alegria':1,'raiva':2,'tristeza':3,'desgosto':4,'medo':5,'surpresa':6,'neutro':7}
     mylist = ConnectionDB.retornaNTextos(idPessoa, nTextos)
-    #obtendo um dicionario por vez
+       
     i=0
     
     while i < nTextos:
@@ -81,14 +81,18 @@ def retornaEmocoes(idPessoa, nTextos):
         #Vetor para saida
         vetorsaida = []
         for classe in distribuicao.samples():
-            vetorsaida.append(dictemocao.get(classe))
+            #vetorsaida.append(dictemocao.get(classe))
             
             vetorsaida.append(distribuicao.prob(classe))
             
             print(vetorsaida)
             
             i+=1
-        return vetorsaida
+    with open('saida.csv', 'a', newline = '') as myfile:
+        wr = csv.writer(myfile)
+        wr.writerow(vetorsaida)    
+    #print(vetorsaida)
+    return vetorsaida
 
         
 
