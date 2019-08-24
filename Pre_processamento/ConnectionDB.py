@@ -8,6 +8,7 @@ user="root",
 passwd="senha666",
 database="depressao"
 )
+
 data = []	
 
 def totalTextos():
@@ -52,8 +53,9 @@ def obterLinhaTexto(idPessoa):  #Fernanda
 		data.append(jsonData)
 	return data
 
-#retorno geral de textos
+#retorno geral de textos(Número de textos desejado de uma pessoa)
 def retornaNTextos(idPessoa, nTextos):
+	data = []
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa,nTextos)) 
 	myresult = mycursor.fetchall()
@@ -65,3 +67,21 @@ def retornaNTextos(idPessoa, nTextos):
 		}
 		data.append(jsonData)
 	return data
+
+'''
+def retornaTextoPorPessoa(idPessoa):  #Vinicius
+	data = []
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = " + str(idPessoa))
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])
+		jsonData = {
+			"texto": x_correto,
+			"isDepressivo": x[1]
+		}
+		data.append(jsonData)
+	return data
+
+	'''
+	

@@ -70,3 +70,6 @@ def contandoCoisas(texto, arquivo):
 
 def contandoCoisasPrint(texto, arquivo):
     return print(contandoCoisas(texto, arquivo))
+
+
+

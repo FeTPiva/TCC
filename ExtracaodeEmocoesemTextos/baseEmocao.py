@@ -1,7 +1,7 @@
 
 
 def retornaTreinamento():
-basetreinamento = [
+    basetreinamento = [
 ('este trabalho e agradável','alegria'),
 ('gosto de ficar no seu aconchego','alegria'),
 ('fiz a adesão ao curso hoje','alegria'),
@@ -550,7 +550,7 @@ basetreinamento = [
 
 
 def retornaTeste():
-   baseteste =[('não precisei pagar o ingresso','alegria'),
+    baseteste =[('não precisei pagar o ingresso','alegria'),
 ('se eu ajeitar tudo fica bem','alegria'),
 ('minha fortuna ultrapassa a sua','alegria'),
 ('sou muito afortunado','alegria'),
