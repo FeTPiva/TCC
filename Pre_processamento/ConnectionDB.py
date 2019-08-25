@@ -8,7 +8,7 @@ user="root",
 passwd="senha666",
 database="depressao"
 )
-#data = []	
+data = []	
 
 def totalTextos():
 	data = []	
@@ -56,7 +56,7 @@ def obterLinhaTexto(idPessoa):  #Fernanda
 
 #retorno geral de textos limitando por ntextos, por cada pessoa
 def retornaNTextos(idPessoa, nTextos):
-	data = []	
+		
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa, nTextos)) 
 	myresult = mycursor.fetchall()
