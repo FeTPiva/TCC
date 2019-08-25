@@ -1,25 +1,15 @@
 import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao2
+import Pre_processamento.ConnectionDB as ConnectionDB
 
-a = mineracaoemocao2.retornaEmocoes(1,2)
-print(a)
+c = ConnectionDB.totalPessoas()
+i=0
 
-  
-def funcao(idPessoa, nTexto):
-    j=1
-    w=1
-    primeira_coluna = []
-    segunda_coluna = []
-    vetor_saida  = mineracaoemocao2.retornaEmocoes(idPessoa,nTexto)
-    for j in idPessoa:
-        for w in nTexto:
-            primeira_coluna = vetor_saida[0]
-            segunda_coluna = vetor_saida[1]
-
-            print(primeira_coluna)
-        #print(segunda_coluna)
-
-        j+=1
-
-
-
-
+while i<c:
+    #a = mineracaoemocao2.retornaProbabilidadeEmocoes(i, 2)
+    pessoa = i+1
+    #a = ConnectionDB.retornaNTextos(pessoa,2)
+    
+    a = mineracaoemocao2.retornaEmocoes(i, 2)
+    print(a)
+    i+=1
+    

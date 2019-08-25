@@ -57,14 +57,18 @@ def extratorpalavras(documento):
     return caracteristicas
 
 
-def retornaEmocoes(idPessoa, input_n_textos):
-    #dictemocao = {'alegria':1,'raiva':2,'tristeza':3,'desgosto':4,'medo':5,'surpresa':6,'neutro':7}
-    mylist = ConnectionDB.retornaNTextos(idPessoa, input_n_textos)
+def retornaEmocoes(idPessoa, nTextos):
+    
+    pessoa = idPessoa+1
+    mylist = ConnectionDB.retornaNTextos(pessoa, nTextos)
+    
+    print(pessoa)
+    print(mylist)
+    
     i=0
     
-    while i < input_n_textos:
+    while i < nTextos:
         vetor_saida = []
-        primeira_coluna = []
         primeiroParse = mylist[i]
         segundoParse = primeiroParse["texto"]
         fraseteste = segundoParse
@@ -85,15 +89,41 @@ def retornaEmocoes(idPessoa, input_n_textos):
             #vetorsaida.append(dictemocao.get(classe))
             
             vetor_saida.append(distribuicao.prob(classe))
-            
-            #print(vetorsaida)
-        i+=1
-
-         
-           
+                       
+    i+=1
+       
     return vetor_saida
 
-        
+def retornaProbabilidadeEmocoes(idPessoa, nTextos):
+    alegria = 0
+    raiva = 0
+    tristeza = 0
+    desgosto = 0
+    medo = 0
+    surpresa = 0
+    j = 0
+    #neutro =0
+    #total_linhas = ConnectionDB.retornaNTextos(idPessoa, input_n_textos)
+    while j <= nTextos:
+        pessoa = j+1
+        vetor_saida = retornaEmocoes(pessoa, nTextos)
+        alegria += vetor_saida[0]
+        raiva += vetor_saida[1]
+        tristeza += vetor_saida[2]
+        desgosto += vetor_saida[3]
+        medo += vetor_saida[4]
+        surpresa += vetor_saida[5]
+        #neutro += vetor_saida[6]
+        print(surpresa)
+        j+=1
+    prob_alegria = alegria / nTextos
+    prob_raiva = raiva / nTextos
+    prob_tristeza = tristeza / nTextos
+    prob_desgosto = desgosto / nTextos
+    prob_medo = medo / nTextos
+    prob_surpresa = surpresa / nTextos
+    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa]
+    return probs       
 
 frases_com_stemming_treinamento = aplicastemmer(basetreinamento)
 frases_com_stemming_teste = aplicastemmer(baseteste)
@@ -130,36 +160,6 @@ for (frase, classe) in base_completa_teste:
 
 matriz = ConfusionMatrix(esperado, previsto)
 
-total_pessoas = ConnectionDB.totalPessoas()
-#dictemocao = {'alegria':1,'raiva':2,'tristeza':3,'desgosto':4,'medo':5,'surpresa':6,'neutro':7}
-def retornaProbs(input_n_textos, idPessoa):
-    alegria = 0
-    raiva = 0
-    tristeza = 0
-    desgosto = 0
-    medo = 0
-    surpresa = 0
-    j = 0
-    #neutro =0
-    #total_linhas = ConnectionDB.retornaNTextos(idPessoa, input_n_textos)
-    while j < input_n_textos:
-        vetor_saida = retornaEmocoes(idPessoa, input_n_textos)
-        alegria += vetor_saida[0]
-        raiva += vetor_saida[1]
-        tristeza += vetor_saida[2]
-        desgosto += vetor_saida[3]
-        medo += vetor_saida[4]
-        surpresa += vetor_saida[5]
-        #neutro += vetor_saida[6]
-        j+=1
-    prob_alegria = alegria / input_n_textos
-    prob_raiva = raiva / input_n_textos
-    prob_tristeza = tristeza / input_n_textos
-    prob_desgosto = desgosto / input_n_textos
-    prob_medo = medo / input_n_textos
-    prob_surpresa = surpresa / input_n_textos
-    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa]
-    return probs
 #COMEÇA AKI
 testestemming = []
 stemmer = nltk.stem.RSLPStemmer()

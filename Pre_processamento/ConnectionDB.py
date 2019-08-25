@@ -8,16 +8,17 @@ user="root",
 passwd="senha666",
 database="depressao"
 )
-
-data = []	
+#data = []	
 
 def totalTextos():
+	data = []	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT COUNT(idTexto) FROM textodepressao")
 	myresult = mycursor.fetchone()
 	return myresult[0]
 	
 def totalPessoas():
+	data = []	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT COUNT(idPessoa) FROM Pessoa")
 	myresult = mycursor.fetchone()
@@ -40,7 +41,7 @@ def obterLinhaFrase(idTexto):  #Vinicius
 
 
 def obterLinhaTexto(idPessoa):  #Fernanda
-	
+	data = []	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
@@ -53,11 +54,11 @@ def obterLinhaTexto(idPessoa):  #Fernanda
 		data.append(jsonData)
 	return data
 
-#retorno geral de textos(Número de textos desejado de uma pessoa)
+#retorno geral de textos limitando por ntextos, por cada pessoa
 def retornaNTextos(idPessoa, nTextos):
-	data = []
+	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa,nTextos)) 
+	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa, nTextos)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
@@ -68,11 +69,11 @@ def retornaNTextos(idPessoa, nTextos):
 		data.append(jsonData)
 	return data
 
-'''
-def retornaTextoPorPessoa(idPessoa):  #Vinicius
-	data = []
+
+def retornaTextosPorPessoa(idPessoa, nTextos): 
+	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = " + str(idPessoa))
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= %s LIMIT %s ;"%(idPessoa,nTextos)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
@@ -82,6 +83,3 @@ def retornaTextoPorPessoa(idPessoa):  #Vinicius
 		}
 		data.append(jsonData)
 	return data
-
-	'''
-	
