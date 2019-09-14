@@ -3,7 +3,6 @@ import Pre_processamento.Corretor as Corretor
 # Conexao com Banco de Dados
 import nltk
 
-nltk.download('punkt') #punkt e rslp
 
 def Tokenize(sentence):
     sentence = sentence.lower()

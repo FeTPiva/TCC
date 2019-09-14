@@ -8,7 +8,7 @@ import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao
 #a ser definido melhor valor:
 #   quanto maior melhor pra contagem de palavras, porém todas as pessoas tem que
 #   ter no minimo esse numero de frases.
-input_n_textos = 2
+input_n_textos = 1
 
 
 print("Processando....")
