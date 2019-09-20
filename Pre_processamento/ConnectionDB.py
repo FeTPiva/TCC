@@ -28,7 +28,7 @@ def totalTextos():
 def totalPessoas():
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT COUNT(idPessoa) FROM Pessoa")
+	mycursor.execute("SELECT MAX(idPessoa) FROM textodepressao")
 	myresult = mycursor.fetchone()
 	return myresult[0]
 
@@ -94,51 +94,65 @@ def retornaTextosPorPessoa(idPessoa, nTextos):
 
 
 #retorna todos os textos da pessoa juntos v2 - pegando numero de palavras
-def retornaTextosPorPessoaToken(idPessoa, nTextos, nToken): 
+def retornaTextosPorPessoaTokenContagem(idPessoa, nToken): 
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= %s LIMIT %s ;"%(idPessoa,nTextos)) 
+	mycursor.execute("SELECT GROUP_CONCAT(SUBSTRING_INDEX(texto , " ", %s) SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= %s ;"%(nToken,idPessoa)) 
 	myresult = mycursor.fetchall()
 
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
 	
 		#pensar aki... vou acabar pegando tipo por ex 10 palavras texto, mas n é o q eu quero pro meu(contagem)	
-		frase = Tokenize(x_correto)
+		#frase = Tokenize(x_correto)
 		#size = len(frase)		
-		fraseFiltrada = []
-		i=0
-		while i < nToken:
-			fraseFiltrada.append(frase[i])
-			i+=1
+		#fraseFiltrada = []
+		#i=0
+		#while i < nToken:
+		#	fraseFiltrada.append(frase[i])
+		#	i+=1
 
 		jsonData = {
-			"texto": fraseFiltrada,
+			"texto": x_correto,
 			"isDepressivo": x[1]
 		}
 		data.append(jsonData)
 	return data
 
 
-#retorno geral de textos limitando por ntextos, por cada pessoa v2 - pegando nmr de palavras
-def retornaNTextosToken(idPessoa, nTextos, nToken):
+#retorno geral de textos limitando por palavras, por cada pessoa - emocoes
+def retornaTextosPorNmrPalavrasEmocao(idPessoa, nToken):
 		
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa, nTextos)) 
+	mycursor.execute("SELECT SUBSTRING_INDEX(texto," ",%s), isDepressivo FROM textodepressao WHERE idPessoa = %s ;"%(nToken,idPessoa)) 
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])		
+		jsonData = {
+			"texto": x_correto,
+			"isDepressivo": x[1]
+		}
+		data.append(jsonData)
+	return data
+
+#retorno textos por pessoa sem filtro - pt pra emocoes
+def retornaNTextosGeral(idPessoa):
+		
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
-		frase = Tokenize(x_correto)
-		#size = len(frase)		
-		fraseFiltrada = []
-		i=0
-		while i < nToken:
-			fraseFiltrada.append(frase[i])
-			i+=1
-
 		jsonData = {
-			"texto": fraseFiltrada,
+			"texto": x_correto,
 			"isDepressivo": x[1]
 		}
 		data.append(jsonData)
 	return data
+
+#nmr de textos de cada pessoa
+def nmrTextosPorPessoa(idPessoa):
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT COUNT(idPessoa) FROM textodepressao WHERE idPessoa = %s ;"%(idPessoa))
+	myresult = mycursor.fetchone()
+	return myresult[0]
