@@ -10,3 +10,13 @@ bagulho,objeto
 balada,festa
 ranço,raiva
 10/10,bonita
+eh,é
+hj,hoje
+bj,beijo
+q,que
+tbm,também
+pq,porque
+issae,isso
+trampar,trabalhar
+trampando,trabalhando
+top,maravilhoso
