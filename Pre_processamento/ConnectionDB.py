@@ -97,7 +97,8 @@ def retornaTextosPorPessoa(idPessoa, nTextos):
 def retornaTextosPorPessoaTokenContagem(idPessoa, nToken): 
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(SUBSTRING_INDEX(texto , " ", %s) SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= %s ;"%(nToken,idPessoa)) 
+	mycursor.execute("SELECT GROUP_CONCAT(SUBSTRING_INDEX(texto , " ", ?) SEPARATOR ', '), isDepressivo FROM textodepressao WHERE idPessoa= ? ;",(nToken,idPessoa)) 
+	
 	myresult = mycursor.fetchall()
 
 	for x in myresult:
