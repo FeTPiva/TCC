@@ -20,6 +20,7 @@ issae,isso
 trampar,trabalhar
 trampando,trabalhando
 top,maravilhoso
+tops,maravilhosos
 mt,muito
 mlk,muleque
 trampo,trabalho
@@ -53,4 +54,32 @@ fut,futebol
 dms,demais
 qnd,quando
 prof,professor
-
+enq,enquanto
+msm,mesmo
+msg,mensagem
+mina,menina
+mino,menino
+mozão,namorado
+cm,com
+mto,muito
+pacas,muito
+daora,legal
+busão,ônibus
+breja,cerveja
+mds,Meu Deus
+show,bom
+churras,churrasco
+obg,obrigado
+parça,parceiro
+parsa,parceiro
+mol,muito
+mo,muito
+tv,televisão
+neh,né
+pakas,muito
+tá,está
+ta,está
+oq,o que
+Oq,o que
+porq,porque
+tão,estão
