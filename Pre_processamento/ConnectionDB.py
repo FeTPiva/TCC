@@ -157,3 +157,36 @@ def nmrTextosPorPessoa(idPessoa):
 	mycursor.execute("SELECT COUNT(idPessoa) FROM textodepressao WHERE idPessoa = %s ;"%(idPessoa))
 	myresult = mycursor.fetchone()
 	return myresult[0]
+
+
+
+#PARA X TESTESSS:
+
+def obterLinhaTextoxTeste(idPessoa):  #Fernanda - versao antiga
+	data = []	
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])
+		jsonData = {
+			"texto": x_correto,
+			"isDepressivo": x[1]
+		}
+		data.append(jsonData)
+	return data
+
+
+def retornaNTextosGeral_xTeste(idPessoa):
+		
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT texto, isDepressivo FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])
+		jsonData = {
+			"texto": x_correto,
+			"isDepressivo": x[1]
+		}
+		data.append(jsonData)
+	return data

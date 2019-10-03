@@ -201,6 +201,78 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
        
     return probs
 
+#PARA TESTEEEEEEE
+def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral_xTeste(idPessoa): 
+    pessoa = idPessoa+1
+    mylist = ConnectionDB.retornaNTextosGeral_xTeste(pessoa)
+    vetor_saida = []
+    testestemming = []
+    alegria = 0
+    raiva = 0
+    tristeza = 0
+    desgosto = 0
+    medo = 0
+    surpresa = 0
+
+    prob_alegria = 0
+    prob_raiva = 0
+    prob_tristeza = 0
+    prob_desgosto = 0
+    prob_medo = 0
+    prob_surpresa = 0
+    probs = []
+                    
+    i=0
+    nTextos = ConnectionDB.nmrTextosPorPessoa(pessoa)
+    while i < nTextos:
+                
+        primeiroParse = mylist[i]
+        segundoParse = primeiroParse["texto"]
+        fraseteste = segundoParse
+        #print("primeiro parse da iteracao {} : {}".format(i, primeiroParse))
+                       
+        stemmer = nltk.stem.RSLPStemmer()
+
+        for (palavrastreinamento) in fraseteste.split():
+            comstem = [p for p in palavrastreinamento.split()]
+            testestemming.append(str(stemmer.stem(comstem[0])))
+
+        novo = extratorpalavras(testestemming)
+        
+        distribuicao = classificador.prob_classify(novo)
+        
+        #Vetor para saida
+        
+        for classe in distribuicao.samples():
+            #vetorsaida.append(dictemocao.get(classe))
+            
+            vetor_saida.append(distribuicao.prob(classe))
+
+        
+        alegria += vetor_saida[0]
+        #print("passei pela iteracao {} da pessoa {}, valor alegrettl: {}".format(i, pessoa, alegria))
+        raiva += vetor_saida[1]
+        tristeza += vetor_saida[2]
+        desgosto += vetor_saida[3]
+        medo += vetor_saida[4]
+        surpresa += vetor_saida[5]
+        #neutro += vetor_saida[6]
+        
+        i+=1  
+
+        
+    prob_alegria = alegria / nTextos
+    #print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
+    prob_raiva = raiva / nTextos
+    prob_tristeza = tristeza / nTextos
+    prob_desgosto = desgosto / nTextos
+    prob_medo = medo / nTextos
+    prob_surpresa = surpresa / nTextos
+    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa]
+    #print("probs = {}".format(probs))
+       
+    return probs
+
 #versao inicial do vetor de probs(cagado)
 def retornaEmocoesRaw(idPessoa, nTextos):
     
