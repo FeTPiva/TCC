@@ -158,23 +158,20 @@ def nmrTextosPorPessoa(idPessoa):
 	myresult = mycursor.fetchone()
 	return myresult[0]
 
-
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #PARA X TESTESSS:
 
 def obterLinhaTextoxTeste(idPessoa):  #Fernanda - versao antiga
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
-		jsonData = {
-			"texto": x_correto,
-			"isDepressivo": x[1]
-		}
-		data.append(jsonData)
-	return data
+		
+	return x_correto
 
 
 def retornaNTextosGeral_xTeste(idPessoa):
@@ -184,9 +181,5 @@ def retornaNTextosGeral_xTeste(idPessoa):
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
-		jsonData = {
-			"texto": x_correto,
-			"isDepressivo": x[1]
-		}
-		data.append(jsonData)
-	return data
+		
+	return x_correto

@@ -48,20 +48,14 @@ def criaListaCsv(val1, val2, val3, val4, val5, val6, val7, val8, val9, isDepre):
 #ok
 def retornaContagem(idPessoa, txtPronomes, txtAbsolutas, txtTristes):
     pessoa = idPessoa+1
-    mylist = ConnectionDB.obterLinhaTexto(pessoa)
-    #print(mylist)
-    primeiroParse = mylist[0]
-    #print(primeiroParse)
-    segundoParse = primeiroParse["texto"]
-    idDepre = primeiroParse["isDepressivo"]
-    #print(segundoParse)
-
-    textoTratado1 = contagem.contandoCoisas(segundoParse,pronome)
-    textoTratado2 = contagem.contandoCoisas(segundoParse,absoluta)
-    textoTratado3 = contagem.contandoCoisas(segundoParse,triste)
+    texto = ConnectionDB.obterLinhaTextoxTeste(pessoa)
+    
+    textoTratado1 = contagem.contandoCoisas(texto ,pronome)
+    textoTratado2 = contagem.contandoCoisas(texto,absoluta)
+    textoTratado3 = contagem.contandoCoisas(texto,triste)
 
     #print(textoTratado1, textoTratado2, textoTratado3, idDepre)
-    lista = criaLista(textoTratado1, textoTratado2, textoTratado3, idDepre)
+    lista = criaLista(textoTratado1, textoTratado2, textoTratado3)
     #print("Contei palavras {} vezes = nPessoas".format(pessoa))
     return lista
 
@@ -76,10 +70,8 @@ def xTeste(minhaString):
     probs = criaListaCsv(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos[0], sentimentos[1], sentimentos[2], sentimentos[3], sentimentos[4], sentimentos[5], contagem_palavras[3])
 
     return probs
-  
 print(tf.__version__)
-​
-print(keras.__version__)
+​print(keras.__version__)
 ​
 #model = keras.models.load_model('./model.h5')
 #print(os.path.join(os.path.dirname(__file__),'modelTiago.h5'))
@@ -120,14 +112,4 @@ def pred_depre():
 
 ​
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
+    app.run(debug=True)  
