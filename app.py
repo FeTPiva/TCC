@@ -45,13 +45,13 @@ def auth():
             
 
 @app.route('/produtos', methods=['GET'])
-@jwt_required
+#@jwt_required
 def get_produtos():
     prod_list = {"items" : lista}
     return jsonify(prod_list)
 
 @app.route('/produto/<int:id>', methods=['GET'])
-@jwt_required
+#@jwt_required
 def get_produto():
     prod = {"id": "nome"}
     for produto in lista:

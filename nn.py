@@ -1,27 +1,12 @@
 import Pre_processamento.ConnectionDB as ConnectionDB
 import contagem_de_palavras.contagem as contagem
-import csv
 import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao
-import sys
-import main_porMediaTodasLinhas
-import mysql.connector
 import Pre_processamento.Corretor as Corretor
 # Conexao com Banco de Dados
 import nltk
 
-from flask import Flask, request, jsonify
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers, Sequential
-import numpy as np
-import os
 
-#base de palavras de contagem
-pronome = 'contagem_de_palavras/pronomes.txt'
-absoluta = 'contagem_de_palavras/absoluta.txt'
-triste = 'contagem_de_palavras/triste.txt'
-
-#ok
+#ok 
 def criaLista(val1, val2, val3):
     lista = []
     lista.insert(0, val1)
@@ -31,7 +16,7 @@ def criaLista(val1, val2, val3):
     return lista
 
 #ok
-def criaListaCsv(val1, val2, val3, val4, val5, val6, val7, val8, val9, isDepre):
+def criaListaCsv2(val1, val2, val3, val4, val5, val6, val7, val8, val9):
     lista = []
     lista.insert(0, val1)
     lista.insert(1,val2)
@@ -42,11 +27,14 @@ def criaListaCsv(val1, val2, val3, val4, val5, val6, val7, val8, val9, isDepre):
     lista.insert(6, val7)
     lista.insert(7, val8)
     lista.insert(8, val9)
-    lista.insert(9,isDepre)
+    
     return lista
 
 #ok
-def retornaContagemTeste(idPessoa, txtPronomes, txtAbsolutas, txtTristes):
+def retornaContagemTeste(idPessoa):
+    pronome = 'contagem_de_palavras/pronomes.txt'
+    absoluta = 'contagem_de_palavras/absoluta.txt'
+    triste = 'contagem_de_palavras/triste.txt'
     pessoa = idPessoa+1
     texto = ConnectionDB.obterLinhaTextoxTeste(pessoa)
     
@@ -60,7 +48,15 @@ def retornaContagemTeste(idPessoa, txtPronomes, txtAbsolutas, txtTristes):
     return lista
 
 
-a = retornaContagemTeste(1, pronome, absoluta, triste)
-i=0
-for i in a:
-    print(a)
+def geraVetorResultados():
+    
+    contagem_palavras = retornaContagemTeste(0)
+
+    sentimentos = mineracaoemocao.retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral_xTeste(0)
+    #juntando os dois
+    probs_teste = criaListaCsv2(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos[0], sentimentos[1], sentimentos[2], sentimentos[3], sentimentos[4], sentimentos[5])
+
+    print(probs_teste)
+    return probs_teste
+
+a = geraVetorResultados()

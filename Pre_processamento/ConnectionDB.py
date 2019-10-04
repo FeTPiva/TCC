@@ -163,10 +163,10 @@ def nmrTextosPorPessoa(idPessoa):
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #PARA X TESTESSS:
 
-def obterLinhaTextoxTeste(idPessoa):  #Fernanda - versao antiga
+def obterLinhaTextoxTeste(idPessoa): 
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
@@ -177,7 +177,7 @@ def obterLinhaTextoxTeste(idPessoa):  #Fernanda - versao antiga
 def retornaNTextosGeral_xTeste(idPessoa):
 		
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto, isDepressivo FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
+	mycursor.execute("SELECT texto FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])

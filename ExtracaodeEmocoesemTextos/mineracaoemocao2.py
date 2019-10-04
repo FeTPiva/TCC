@@ -226,14 +226,11 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral_xTeste(idPessoa):
     nTextos = ConnectionDB.nmrTextosPorPessoa(pessoa)
     while i < nTextos:
                 
-        primeiroParse = mylist[i]
-        segundoParse = primeiroParse["texto"]
-        fraseteste = segundoParse
-        #print("primeiro parse da iteracao {} : {}".format(i, primeiroParse))
+         
                        
         stemmer = nltk.stem.RSLPStemmer()
 
-        for (palavrastreinamento) in fraseteste.split():
+        for (palavrastreinamento) in mylist.split():
             comstem = [p for p in palavrastreinamento.split()]
             testestemming.append(str(stemmer.stem(comstem[0])))
 

@@ -70,6 +70,8 @@ def xTeste(minhaString):
     probs = criaListaCsv(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos[0], sentimentos[1], sentimentos[2], sentimentos[3], sentimentos[4], sentimentos[5], contagem_palavras[3])
 
     return probs
+
+    
 print(tf.__version__)
 ​print(keras.__version__)
 ​
