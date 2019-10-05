@@ -83,3 +83,11 @@ oq,o que
 Oq,o que
 porq,porque
 tão,estão
+n,não
+ñ,não
+nn,não
+nñ,não
+ñn,não
+fzr,fazer
+ngm,ninguém
+ap,apartamento
