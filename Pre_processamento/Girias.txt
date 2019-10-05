@@ -25,6 +25,7 @@ mt,muito
 mlk,muleque
 trampo,trabalho
 ce,você
+cê,você
 to,estou
 qlqer, qualquer
 cia,compania
@@ -47,6 +48,7 @@ migo,amigo
 miga,amiga
 migas,amigas
 ceis,vocês
+vcs, vocês
 smp,sempre
 nd,nada
 qm,quem
@@ -82,4 +84,56 @@ ta,está
 oq,o que
 Oq,o que
 porq,porque
+Pooq,porque
 tão,estão
+n,não
+ñ,não
+nn,não
+nñ,não
+ñn,não
+fzr,fazer
+ngm,ninguém
+ap,apartamento
+bunitinha,bonita
+migaah,amiga
+anooooo,ano
+oiaaa,olha
+ninnguém,ninguém
+pf,por favor
+ngn,ninguém
+nene, neném
+baby,bebê
+mana,irmâ
+life,vida
+sorry,desculpa
+amoooooo,amo
+amooo,amo
+lokka,louca
+oia,olha
+loka,louca
+ft,foto
+amr,amor
+muitoooooo,muito
+muitoo,muito
+muitooo,muito
+muitoooo,muito
+amigooo,amigo
+aqq,aqui
+Vamooo,vamos
+wats,whatsapp
+whats,whatsapp
+bb,bebê
+be,bebê
+boy,menino
+nm,nenhum
+dps,depois
+help,ajuda
+tou,estou
+sra,senhora
+add,adiciona
+tô,estou
+core,coração
+mó,muito
+mermão,cara
+kd,cadê
+fmz,firmeza
