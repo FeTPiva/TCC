@@ -133,3 +133,7 @@ sra,senhora
 add,adiciona
 tô,estou
 core,coração
+mó,muito
+mermão,cara
+kd,cadê
+fmz,firmeza
