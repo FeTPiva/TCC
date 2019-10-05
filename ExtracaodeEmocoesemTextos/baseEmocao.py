@@ -663,7 +663,8 @@ def retornaTreinamento():
 
 
 def retornaTeste():
-    baseteste =[('não precisei pagar o ingresso','alegria'),
+    baseteste =[
+('não precisei pagar o ingresso','alegria'),
 ('se eu ajeitar tudo fica bem','alegria'),
 ('minha fortuna ultrapassa a sua','alegria'),
 ('sou muito afortunado','alegria'),
