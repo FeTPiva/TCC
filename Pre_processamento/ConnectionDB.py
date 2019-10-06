@@ -140,13 +140,12 @@ def retornaTextosPorNmrPalavrasEmocao(idPessoa, nToken):
 def retornaNTextosGeral(idPessoa):
 		
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s ;"%(idPessoa)) 
+	mycursor.execute("SELECT texto FROM textodepressao WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
 		jsonData = {
-			"texto": x_correto,
-			"isDepressivo": x[1]
+			"texto": x_correto
 		}
 		data.append(jsonData)
 	return data
