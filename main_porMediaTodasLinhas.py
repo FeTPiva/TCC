@@ -32,7 +32,7 @@ def criaLista(val1, val2, val3, val4):
     return lista
 
 #ok
-def criaListaCsv(val1, val2, val3, val4, val5, val6, val7, val8, val9, isDepre):
+def criaListaCsv(val1, val2, val3, val4, val5, val6, val7, val8, val9, val10, isDepre):
     lista = []
     lista.insert(0, val1)
     lista.insert(1,val2)
@@ -43,7 +43,8 @@ def criaListaCsv(val1, val2, val3, val4, val5, val6, val7, val8, val9, isDepre):
     lista.insert(6, val7)
     lista.insert(7, val8)
     lista.insert(8, val9)
-    lista.insert(9,isDepre)
+    lista.insert(9, val10)
+    lista.insert(10,isDepre)
     return lista
 
 #ok
@@ -83,10 +84,10 @@ while x < c:
     #vetor de sentimentos
     sentimentos = mineracaoemocao.retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(x)
     #juntando os dois
-    probs_csv = criaListaCsv(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos[0], sentimentos[1], sentimentos[2], sentimentos[3], sentimentos[4], sentimentos[5], contagem_palavras[3])
+    probs_csv = criaListaCsv(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos[0], sentimentos[1], sentimentos[2], sentimentos[3], sentimentos[4], sentimentos[5],sentimentos[6], contagem_palavras[3])
 
     #gerando o csv    
-    with open('resultados_pre_processamento/resultados.csv', 'a', newline = '') as myfile:
+    with open('resultados_pre_processamento/resultados233.csv', 'a', newline = '') as myfile:
         wr = csv.writer(myfile)
         wr.writerow(probs_csv)
     
@@ -94,3 +95,4 @@ while x < c:
     x+=1
 
 print("Terminado!")
+

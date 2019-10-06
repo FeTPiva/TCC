@@ -141,6 +141,7 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
     desgosto = 0
     medo = 0
     surpresa = 0
+    neutro = 0
 
     prob_alegria = 0
     prob_raiva = 0
@@ -148,6 +149,7 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
     prob_desgosto = 0
     prob_medo = 0
     prob_surpresa = 0
+    prob_neutro = 0
     probs = []
                     
     i=0
@@ -184,7 +186,7 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
         desgosto += vetor_saida[3]
         medo += vetor_saida[4]
         surpresa += vetor_saida[5]
-        #neutro += vetor_saida[6]
+        neutro += vetor_saida[6]
         
         i+=1  
 
@@ -196,7 +198,8 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
     prob_desgosto = desgosto / nTextos
     prob_medo = medo / nTextos
     prob_surpresa = surpresa / nTextos
-    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa]
+    prob_neutro = neutro/nTextos
+    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa, prob_neutro]
     #print("probs = {}".format(probs))
        
     return probs

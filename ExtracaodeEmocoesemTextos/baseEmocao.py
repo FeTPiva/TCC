@@ -544,7 +544,7 @@ def retornaTreinamento():
 ('a preocupação deveria nos levar a ação não a depressão','tristeza'),
 ('passamos ao desalento e a loucura','tristeza'),
 ('aquele que nunca viu a tristeza nunca reconhecerá a alegria','tristeza'),
-('cuidado com a tristeza ela e um vicio','tristeza')
+('cuidado com a tristeza ela e um vicio','tristeza'),
 
 ('Queremos negociar com alguém que tenha ingressos para Houston, mas ninguém vai.','neutro'),
 ('não pode cair no sono','neutro'),
@@ -896,7 +896,7 @@ def retornaTeste():
 ('os remedios me derrubam na cama','tristeza'),
 ('a depressão vai me derrubar','tristeza'),
 ('suas desculpas são falsas','tristeza'),
-('não magoe as pessoas','tristeza')
+('não magoe as pessoas','tristeza'),
         
 ('estou comendo barras no barjohnnys! (Eles não são carne de porco ainda na pesquisa ...)','neutro'),
 ('sexta-feira aqui, finalmente, não é muito divertido quando você está louco','neutro'),
