@@ -132,6 +132,7 @@ def retornaVotacaoEmocoesProbabilidade(idPessoa, nTextos):
 #pega pessoa por pessoa, analisa cada texto, joga no vetor probabilidade fazendo a media entre cada valor
 def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa): 
     pessoa = idPessoa+1
+    #print("estou na pessoa", pessoa)
     mylist = ConnectionDB.retornaNTextosGeral(pessoa)
     vetor_saida = []
     testestemming = []
@@ -154,10 +155,19 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
                     
     i=0
     nTextos = ConnectionDB.nmrTextosPorPessoa(pessoa)
+    #print("nTextos da pessoa",nTextos)
+    #print(mylist)
+    
     while i < nTextos:
+     #   print("to na iteração do while: ",i)
+        
                 
         primeiroParse = mylist[i]
+      #  print("primeiro parse", primeiroParse)
+        
         segundoParse = primeiroParse["texto"]
+        primeiroParse.clear()
+
         fraseteste = segundoParse
         #print("primeiro parse da iteracao {} : {}".format(i, primeiroParse))
                        
@@ -178,7 +188,7 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
             
             vetor_saida.append(distribuicao.prob(classe))
 
-        
+        #print(vetor_saida)
         alegria += vetor_saida[0]
         #print("passei pela iteracao {} da pessoa {}, valor alegrettl: {}".format(i, pessoa, alegria))
         raiva += vetor_saida[1]
@@ -186,10 +196,12 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
         desgosto += vetor_saida[3]
         medo += vetor_saida[4]
         surpresa += vetor_saida[5]
-        neutro += vetor_saida[6]
-        
+        #neutro += vetor_saida[6]
+        vetor_saida.clear()
+        #print("vet saida depois: ",vetor_saida)
         i+=1  
 
+    mylist.clear()
         
     prob_alegria = alegria / nTextos
     #print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
@@ -198,8 +210,8 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
     prob_desgosto = desgosto / nTextos
     prob_medo = medo / nTextos
     prob_surpresa = surpresa / nTextos
-    prob_neutro = neutro/nTextos
-    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa, prob_neutro]
+    #prob_neutro = neutro/nTextos
+    probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa]
     #print("probs = {}".format(probs))
        
     return probs
@@ -405,17 +417,22 @@ def retorna_Votacao_Emocao_Probabilidade_Por_nmr_Palavras(idPessoa, nToken):
 
         
     prob_alegria = alegria / nTextos
-    #print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
+    print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
     prob_raiva = raiva / nTextos
     prob_tristeza = tristeza / nTextos
     prob_desgosto = desgosto / nTextos
     prob_medo = medo / nTextos
     prob_surpresa = surpresa / nTextos
     probs = [prob_alegria, prob_raiva, prob_tristeza, prob_desgosto, prob_medo, prob_surpresa]
-    #print("probs = {}".format(probs))
+    print("probs = {} ".format(probs))
        
     return probs
 
+frases_com_stemming_treinamento = []
+palavras_treinamento = []
+frequencia_treinamento = []
+palavras_unicas_treinamento = []
+base_completa_treinamento = []
 
 frases_com_stemming_treinamento = aplicastemmer(basetreinamento)
 frases_com_stemming_teste = aplicastemmer(baseteste)
