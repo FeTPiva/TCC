@@ -1,3 +1,5 @@
+#logica principal processamento de sentimentos
+
 import Pre_processamento.ConnectionDB as ConnectionDB
 
 c = ConnectionDB.totalPessoas()

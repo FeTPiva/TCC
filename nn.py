@@ -4,6 +4,7 @@ import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao
 import Pre_processamento.Corretor as Corretor
 # Conexao com Banco de Dados
 import nltk
+from keras.models import Sequential
 
 
 #ok 
@@ -58,5 +59,13 @@ def geraVetorResultados():
 
     print(probs_teste)
     return probs_teste
+
+
+def predictKeras(vetor):
+    algo=[]
+
+
+
+    return algo
 
 a = geraVetorResultados()
