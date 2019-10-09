@@ -29,7 +29,7 @@ def aplicastemmer(texto):
     stemmer = nltk.stem.RSLPStemmer()
     frasessstemming = []
     for (palavras, emocao) in texto:
-        comstemming = [str(stemmer.stem(p)) for p in palavras.split() if p not in stopwordsnltk]
+        comstemming = [str(stemmer.stem(p)) for p in palavras.split() if p not in stopwords]
         frasessstemming.append((comstemming, emocao))
     return frasessstemming
 
