@@ -78,9 +78,14 @@ def retornaContagem(idPessoa):
     pronome = 'contagem_de_palavras/pronomes.txt'
     absoluta = 'contagem_de_palavras/absoluta.txt'
     triste = 'contagem_de_palavras/triste.txt'
+    textoAnalisado = 'contagem_de_palavras/analisando.txt'
+    #passar isso ^^ pro db depois
+    
     pessoa = idPessoa+1
 
     texto = ConnectionDB.obterLinhaTexto(pessoa)
+    #with open(textoAnalisado, 'r') as document_text:
+    #    texto = document_text.read()
        
     textoTratado1 = contandoCoisas(texto ,pronome)
     textoTratado2 = contandoCoisas(texto,absoluta)
@@ -92,11 +97,14 @@ def retornaContagem(idPessoa):
     return lista
 
 
-#ok
 def criaLista(*args):
     lista = []
     i=0
-    for i in args:            
-        lista.insert(i, args)
+    c = len(args)
+
+    while i < c:
+               
+        lista.insert(i, args[i])
+        i+=1
       
     return lista
