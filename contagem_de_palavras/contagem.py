@@ -1,7 +1,8 @@
 import nltk
 from nltk.stem import RSLPStemmer
 
-#nltk.download() punkt e rslp
+#nltk.download('rslp')
+#nltk.download('punkt') 
 
 def Tokenize(sentence):
     sentence = sentence.lower()
@@ -70,3 +71,32 @@ def contandoCoisas(texto, arquivo):
 
 def contandoCoisasPrint(texto, arquivo):
     return print(contandoCoisas(texto, arquivo))
+
+
+#ok
+def retornaContagem(idPessoa):
+    pronome = 'contagem_de_palavras/pronomes.txt'
+    absoluta = 'contagem_de_palavras/absoluta.txt'
+    triste = 'contagem_de_palavras/triste.txt'
+    pessoa = idPessoa+1
+
+    texto = ConnectionDB.obterLinhaTexto(pessoa)
+       
+    textoTratado1 = contandoCoisas(texto ,pronome)
+    textoTratado2 = contandoCoisas(texto,absoluta)
+    textoTratado3 = contandoCoisas(texto,triste)
+
+    #print(textoTratado1, textoTratado2, textoTratado3, idDepre)
+    lista = criaLista(textoTratado1, textoTratado2, textoTratado3)
+    #print("Contei palavras {} vezes = nPessoas".format(pessoa))
+    return lista
+
+
+#ok
+def criaLista(*args):
+    lista = []
+    i=0
+    for i in args:            
+        lista.insert(i, args)
+      
+    return lista
