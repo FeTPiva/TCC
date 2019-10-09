@@ -47,7 +47,6 @@ def buscapalavrasunicas(frequencia):
     freq = frequencia.keys()
     return freq
 
-
 def extratorpalavras(documento):
     doc = set(documento)
     caracteristicas = {}
