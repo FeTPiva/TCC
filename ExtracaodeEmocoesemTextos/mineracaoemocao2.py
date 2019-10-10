@@ -11,18 +11,17 @@ import Pre_processamento.ConnectionDB as ConnectionDB
 
 #retorno do vetor com a base de treinamento
 basetreinamento = baseEmocao.retornaTreinamento()
+
 #retorno do vetor com a base de teste
 baseteste = baseEmocao.retornaTeste()
 
-
-stopwordsnltk = nltk.corpus.stopwords.words('portuguese')
-stopwordsnltk.append('vou')
-stopwordsnltk.append('tão')
+#retorno do vetor com a base de stopwords
+stopwords = baseStopwords.retornaStopwords()
 
 def removestopwords(texto):
     frases = []
     for (palavras, emocao) in texto:
-        semstop = [p for p in palavras.split() if p not in stopwordsnltk]
+        semstop = [p for p in palavras.split() if p not in stopwords]
         frases.append((semstop, emocao))
     return frases
 
@@ -30,7 +29,7 @@ def aplicastemmer(texto):
     stemmer = nltk.stem.RSLPStemmer()
     frasessstemming = []
     for (palavras, emocao) in texto:
-        comstemming = [str(stemmer.stem(p)) for p in palavras.split() if p not in stopwordsnltk]
+        comstemming = [str(stemmer.stem(p)) for p in palavras.split() if p not in stopwords]
         frasessstemming.append((comstemming, emocao))
     return frasessstemming
 
@@ -47,7 +46,6 @@ def buscafrequencia(palavras):
 def buscapalavrasunicas(frequencia):
     freq = frequencia.keys()
     return freq
-
 
 def extratorpalavras(documento):
     doc = set(documento)
