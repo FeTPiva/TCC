@@ -56,7 +56,6 @@ def extratorpalavras(documento):
         caracteristicas['%s' % palavras] = (palavras in doc)
     return caracteristicas
 
-
 #pega pessoa por pessoa, limitando os textos por nTextos, fazendo a media entre eles entao
 def retornaVotacaoEmocoesProbabilidade(idPessoa, nTextos):
     pessoa = idPessoa+1
