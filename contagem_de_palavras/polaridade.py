@@ -3,6 +3,9 @@ from nltk.stem import RSLPStemmer
 
 import mysql.connector
 
+
+
+
 mydb = mysql.connector.connect(
 host="localhost",
 user="root",
@@ -62,14 +65,13 @@ def polarizandoCoisas(texto):
     texto = Tokenize(texto)
 
     #texto = Stemming(texto)
-       
-    print(texto)
+
     i = 0
     t = toltalRegistros()
     mylist = retornaVetorSQL()    
 
     while i < t:
-        primeiroParse = mylist[i]        
+        primeiroParse = mylist[i]                
         segundoParse = primeiroParse["palavra"]
         pol = primeiroParse["pol"]
         primeiroParse.clear()
@@ -98,6 +100,7 @@ def criaLista(*args):
 lista = ['a','b']
 #a = retornaVetorSQL()
 #a = toltalRegistros()
-a = polarizandoCoisas("soberba temor revoltado")
+a = polarizandoCoisas("temor ")
+
 
 print(a)
