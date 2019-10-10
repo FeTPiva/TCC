@@ -4,6 +4,7 @@ import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao
 import Pre_processamento.Corretor as Corretor
 import nltk
 from keras.models import Sequential, load_model
+import numpy as np
 
 def geraVetorResultados():
     

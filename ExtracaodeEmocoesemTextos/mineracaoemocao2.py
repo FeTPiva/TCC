@@ -1,6 +1,7 @@
 # coding: utf-8
 import nltk
 import csv
+import ExtracaodeEmocoesemTextos.baseStopwords as baseStopwords
 
 #lembrar de alterar qnd for rodar no main geral
 import ExtracaodeEmocoesemTextos.baseEmocao as baseEmocao
@@ -9,7 +10,7 @@ import ExtracaodeEmocoesemTextos.baseEmocao as baseEmocao
 import Pre_processamento.ConnectionDB as ConnectionDB
 
 
-#retorno do vetor com a base de treinamento
+#retorno do vetor com a base de treinamento 
 basetreinamento = baseEmocao.retornaTreinamento()
 
 #retorno do vetor com a base de teste

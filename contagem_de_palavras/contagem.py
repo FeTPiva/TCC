@@ -1,5 +1,6 @@
 import nltk
 from nltk.stem import RSLPStemmer
+import Pre_processamento.ConnectionDB as ConnectionDB
 
 #nltk.download('rslp')
 #nltk.download('punkt') 
@@ -78,21 +79,29 @@ def retornaContagem(idPessoa):
     pronome = 'contagem_de_palavras/pronomes.txt'
     absoluta = 'contagem_de_palavras/absoluta.txt'
     triste = 'contagem_de_palavras/triste.txt'
-    textoAnalisado = 'contagem_de_palavras/analisando.txt'
+    #textoAnalisado = 'contagem_de_palavras/analisando.txt'
     #passar isso ^^ pro db depois
+    segundoParse = ""
     
     pessoa = idPessoa+1
+    
 
-    texto = ConnectionDB.obterLinhaTexto(pessoa)
+    mylist = ConnectionDB.obterLinhaTexto(pessoa)
     #with open(textoAnalisado, 'r') as document_text:
     #    texto = document_text.read()
+    primeiroParse = mylist[0]
+      #  print("primeiro parse", primeiroParse)
+      
+    segundoParse = primeiroParse["texto"]
+    isDepre = primeiroParse["isDepressivo"]
+    primeiroParse.clear()
        
-    textoTratado1 = contandoCoisas(texto ,pronome)
-    textoTratado2 = contandoCoisas(texto,absoluta)
-    textoTratado3 = contandoCoisas(texto,triste)
+    textoTratado1 = contandoCoisas(segundoParse ,pronome)
+    textoTratado2 = contandoCoisas(segundoParse,absoluta)
+    textoTratado3 = contandoCoisas(segundoParse,triste)
 
     #print(textoTratado1, textoTratado2, textoTratado3, idDepre)
-    lista = criaLista(textoTratado1, textoTratado2, textoTratado3)
+    lista = criaLista(textoTratado1, textoTratado2, textoTratado3, isDepre)
     #print("Contei palavras {} vezes = nPessoas".format(pessoa))
     return lista
 
