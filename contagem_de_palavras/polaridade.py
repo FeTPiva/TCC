@@ -36,6 +36,11 @@ def retornaVetorSQL():
     
     return data
 
+def insertSQL(txt,pol):
+    mycursor = mydb.cursor()
+    mycursor.execute(" insert into newpol (palavra, polaridade) values (%s ,%i); "%(txt,pol))
+     
+
 def toltalRegistros():
     data = []	
     mycursor = mydb.cursor()
@@ -56,6 +61,9 @@ def Stemming(sentence):
     for word in sentence:
         phrase.append(stemmer.stem(word.lower()))
     return phrase
+
+
+
 
 
 def polarizandoCoisas(texto):
@@ -97,7 +105,7 @@ def criaLista(*args):
 
 
 #a = retornaTextosSQL()
-lista = ['a','b']
+#lista = ['a','b']
 #a = retornaVetorSQL()
 #a = toltalRegistros()
 a = polarizandoCoisas("temor ")
