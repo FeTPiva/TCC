@@ -39,34 +39,18 @@ modelo = MultinomialNB()
 modelo.fit(freq_tweets,classes)
 
 
-#Testando o modelo com algumas instâncias simples
-
 # Entrada das frases
-testes = ['Eu não aguento mais minha vida','gosto de batata','hoje acordei meio triste']
+testes = ['Esse governo está no início, vamos ver o que vai dar']
 
 # Fazendo a classificação com o modelo treinado.
 freq_testes = vectorizer.transform(testes)
-modelo.predict(freq_testes)
+#print(modelo.predict(freq_testes))
+#print(max(max(modelo.predict_proba(freq_testes))))
 
-
-'''
-
-"""** Avaliando o modelo **"""
-
-# Fazendo o cross validation do modelo
-resultados = cross_val_predict(modelo, freq_tweets, classes, cv=10)
-
-
-# Medindo a acurácia média do modelo
-print (metrics.accuracy_score(classes,resultados))
-
-
-# Medidas de validação do modelo
-sentimento=['Positivo','Negativo','Neutro']
-print (metrics.classification_report(classes,resultados,sentimento))
-
-
-# Matriz de confusão
-print (pd.crosstab(classes, resultados, rownames=['Real'], colnames=['Predito'], margins=True))
-
-'''
+#Saída
+dictemocao = {'Positivo':1,'Negativo':2,'Neutro':3}
+vetorsaida = []
+for classe in modelo.predict(freq_testes):
+    vetorsaida.append(dictemocao.get(classe))
+    vetorsaida.append(max(max(modelo.predict_proba(freq_testes))))
+print(vetorsaida)
