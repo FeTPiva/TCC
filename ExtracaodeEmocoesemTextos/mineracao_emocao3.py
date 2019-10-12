@@ -45,8 +45,9 @@ testes = ['Esse governo está no início, vamos ver o que vai dar']
 # Fazendo a classificação com o modelo treinado.
 freq_testes = vectorizer.transform(testes)
 #print(modelo.predict(freq_testes))
-#print(max(max(modelo.predict_proba(freq_testes))))
+print(modelo.predict_proba(freq_testes))
 
+'''
 #Saída
 dictemocao = {'Positivo':1,'Negativo':2,'Neutro':3}
 vetorsaida = []
