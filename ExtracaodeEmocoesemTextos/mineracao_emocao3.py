@@ -10,7 +10,7 @@ from sklearn.model_selection import cross_val_predict
 
 
 #Ler arquivo de dados e conta a quantidade de linhas
-dataset = pd.read_csv('Tweets_Mg.csv',encoding='utf-8')
+dataset = pd.read_csv('ExtracaodeEmocoesemTextos/Tweets_Mg.csv',encoding='utf-8')
 
 
 #Conta a quantidade de linhas de tweets neutros, positivos e negativos
@@ -53,4 +53,5 @@ vetorsaida = []
 for classe in modelo.predict(freq_testes):
     vetorsaida.append(dictemocao.get(classe))
     vetorsaida.append(max(max(modelo.predict_proba(freq_testes))))
+    
 print(vetorsaida)

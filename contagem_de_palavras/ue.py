@@ -1,6 +1,25 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import BernoulliNB
-import Pre_processamento.ConnectionDB as ConnectionDB
+import pandas as pd
+
+def extractDigits(lst): 
+    return [[el] for el in lst] 
+                  
+
+def le_valoresPT():
+    dados = []
+    df = pd.read_excel("contagem_de_palavras/dbs/DadosNegativos.xlsx", sheet_name=0)
+    list1 = list(df['texto'])
+    list2 = list(df['valor'])
+
+    list3 = list(zip(list1, list2))
+    dados = [list(elem) for elem in list3]
+
+    #dados = extractDigits(list3)
+    #print(dados)
+
+    return dados
+
 
 def exibir_resultado(valor):
     resultado = valor
@@ -22,7 +41,14 @@ def obter_dados_das_fontes():
 
     with open(diretorio_base + "yelp_labelled.txt", "r") as arquivo_texto:
         dados += arquivo_texto.read().split('\n')
+    
+    return dados
 
+def pegaSents():
+    diretorio_base = "contagem_de_palavras/dbs/"
+
+    with open(diretorio_base + "Sentimentotxt.txt", "r") as arquivo_texto:
+        dados = arquivo_texto.read().split('\n')
     return dados
 
 def tratamento_dos_dados(dados):
@@ -30,8 +56,10 @@ def tratamento_dos_dados(dados):
     for dado in dados:
         if len(dado.split("\t")) == 2 and dado.split("\t")[1] != "":
             dados_tratados.append(dado.split("\t"))
-
+    print(dados_tratados)
     return dados_tratados
+
+
 
 def dividir_dados_para_treino_e_validacao(dados):
     quantidade_total = len(dados)
@@ -47,9 +75,11 @@ def dividir_dados_para_treino_e_validacao(dados):
 
     return treino, validacao
 
+
+
 def pre_processamento():
-    dados = obter_dados_das_fontes()
-    dados_tratados = tratamento_dos_dados(dados)
+    #dados = obter_dados_das_fontes()
+    dados_tratados = le_valoresPT()
 
     return dividir_dados_para_treino_e_validacao(dados_tratados)
 
@@ -110,7 +140,6 @@ def retorna_analisar_frase(classificador, vetorizador, frase):
     return a[0]
 
 
-
 def retorna_Votacao_3Emocoes(idPessoa): 
     pessoa = idPessoa+1
     #print("estou na pessoa", pessoa)
@@ -144,8 +173,6 @@ registros_de_treino, registros_para_avaliacao = pre_processamento()
 vetorizador = CountVectorizer(binary = 'true')
 classificador = realizar_treinamento(registros_de_treino, vetorizador)
 
-
-
-
-#b = retorna_analisar_frase(classificador, vetorizador,"so bad")
+#b = retorna_analisar_frase(classificador, vetorizador,"que merda")
 #print(b)
+#le_valoresPT()
