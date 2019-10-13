@@ -542,7 +542,11 @@ def retornaTreinamento():
 ('a preocupação deveria nos levar a ação não a depressão','tristeza'),
 ('passamos ao desalento e a loucura','tristeza'),
 ('aquele que nunca viu a tristeza nunca reconhecerá a alegria','tristeza'),
-('cuidado com a tristeza ela e um vicio','tristeza'),
+('cuidado com a tristeza ela e um vicio','tristeza')]
+
+    
+    return basetreinamento
+'''
 
 ('Queremos negociar com alguém que tenha ingressos para Houston, mas ninguém vai.','neutro'),
 ('não pode cair no sono','neutro'),
@@ -655,9 +659,10 @@ def retornaTreinamento():
 ('aleatória tem um um','neutro'),
 ('ddlovato julho ... muito longo','neutro'),
 ('usando óculos me dá dor de cabeça.','neutro'),
-('sono .... bons tweeties a noite !!! até OC amanhã. Eu espero e rezo para que Rachyl melhore logo !!!','neutro')]
-    
-    return basetreinamento
+('sono .... bons tweeties a noite !!! até OC amanhã. Eu espero e rezo para que Rachyl melhore logo !!!','neutro')
+
+'''
+
 
 
 def retornaTeste():

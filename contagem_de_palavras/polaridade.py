@@ -1,9 +1,7 @@
 import nltk
 from nltk.stem import RSLPStemmer
 #import Pre_processamento.ConnectionDB as ConnectionDB
-
 import mysql.connector
-
 
 mydb = mysql.connector.connect(
 host="localhost",
@@ -11,7 +9,6 @@ user="root",
 passwd="senha666",
 database="depressao"
 )
-
 
 def retornaTextosSQLPOL():  
 	data = []	
@@ -54,6 +51,7 @@ def obterLinhaTextoPOL(idPessoa):
 	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM textodepressao WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
 	
+    
 	return myresult[0][0]
 
 
@@ -62,36 +60,43 @@ def Tokenize(sentence):
     sentence = nltk.word_tokenize(sentence)
     return sentence
 
-def Stemming(sentence):
-    stemmer = RSLPStemmer()
-    phrase = []
-    for word in sentence:
-        phrase.append(stemmer.stem(word.lower()))
-    return phrase
+def search(values, searchFor):
+    for k in values:
+        for v in values[k]:
+            if searchFor in v:
+                return k
+    return None
 
 
 def polarizandoCoisas(texto):
 
     p = 0
+
+    #vetor
+    textotk = Tokenize(texto) 
     
-    texto = Tokenize(texto)
-
-    #texto = Stemming(texto)
-
+        
     i = 0
     t = toltalRegistrosPOL()
     mylist = retornaVetorSQLPOL()    
-
-    while i < t:
-        primeiroParse = mylist[i]                
-        segundoParse = primeiroParse["palavra"]
-        pol = primeiroParse["pol"]
+ 
+    j = 0
+    while j < t:
+        primeiroParse = mylist[j]
+       
+        pol = primeiroParse['pol']      
+          
+        segundoParse = primeiroParse['palavra']                            
+                    
         primeiroParse.clear()
-        for word in segundoParse :
-            if word in texto :
-                p = p+pol
-        i+=1
-  
+        for word in textotk:
+            
+            if word == segundoParse:
+                p = p + pol
+                
+
+        j+=1
+    
     return p
     
 def polarizando(idPessoa):
@@ -101,12 +106,10 @@ def polarizando(idPessoa):
     pessoa = idPessoa+1
     
     segundoParse = obterLinhaTextoPOL(pessoa)
-    
+            
     polarization = polarizandoCoisas(segundoParse)
-    
-    lista = criaLista(polarization)
- 
-    return lista
+            
+    return polarization
 
 
 def criaLista(*args):
@@ -126,9 +129,8 @@ def criaLista(*args):
 #lista = ['a','b']
 #a = retornaVetorSQL()
 #a = toltalRegistros()
-a = polarizandoCoisas("zurzir ")
 
-#a = obterLinhaTextoPOL(1)
+#a = polarizando(1)
 
-print(a)
+#print(a)
 
