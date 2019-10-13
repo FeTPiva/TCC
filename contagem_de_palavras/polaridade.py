@@ -48,13 +48,13 @@ def toltalRegistrosPOL():
 
     return data[0]
 
-def obterLinhaTextoPOL(idPessoa):  #Fernanda - versao antiga
+def obterLinhaTextoPOL(idPessoa):
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', '), isDepressivo FROM tbl_polaridade WHERE idPessoa= " + str(idPessoa)) 
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM textodepressao WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
 	
-	return myresult[0]
+	return myresult[0][0]
 
 
 def Tokenize(sentence):
@@ -87,8 +87,8 @@ def polarizandoCoisas(texto):
         segundoParse = primeiroParse["palavra"]
         pol = primeiroParse["pol"]
         primeiroParse.clear()
-        for word in texto :
-            if word in segundoParse :
+        for word in segundoParse :
+            if word in texto :
                 p = p+pol
         i+=1
   
@@ -100,22 +100,12 @@ def polarizando(idPessoa):
     
     pessoa = idPessoa+1
     
-
     segundoParse = obterLinhaTextoPOL(pessoa)
-    #with open(textoAnalisado, 'r') as document_text:
-    #    texto = document_text.read()
-    #primeiroParse = mylist[0]
-      #  print("primeiro parse", primeiroParse)
-      
-    #segundoParse = primeiroParse["texto"]
-    #isDepre = primeiroParse["isDepressivo"]
-    #primeiroParse.clear()
-       
+    
     polarization = polarizandoCoisas(segundoParse)
-
-    #print(textoTratado1, textoTratado2, textoTratado3, idDepre)
+    
     lista = criaLista(polarization)
-    #print("Contei palavras {} vezes = nPessoas".format(pessoa))
+ 
     return lista
 
 
@@ -136,7 +126,9 @@ def criaLista(*args):
 #lista = ['a','b']
 #a = retornaVetorSQL()
 #a = toltalRegistros()
-#a = polarizandoCoisas("temor ")
+a = polarizandoCoisas("zurzir ")
 
+#a = obterLinhaTextoPOL(1)
 
-#print(a)
+print(a)
+
