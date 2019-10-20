@@ -48,6 +48,12 @@ Last Update: Jan 19, 2018
   margin: 0;
   padding: 0; }
 
+
+#akameNav{
+  /*position: sticky*/
+
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;

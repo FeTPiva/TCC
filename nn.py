@@ -37,7 +37,8 @@ def geraVetorResultados():
 
 def predictKeras(vetor):
     #o vetor ali é o q vem do pré processamneto(probs teste)
-    test  = np.asarray(vetor)
+    vet1 = [vetor]
+    test  = np.asarray(vet1)
     
     model = load_model('my_model.h5')
 
