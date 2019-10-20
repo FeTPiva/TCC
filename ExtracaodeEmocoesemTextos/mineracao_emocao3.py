@@ -82,6 +82,63 @@ def retornaVetorProb(idPessoa):
        
     return probs
 
+def retornaVetorProbTeste(idPessoa): 
+    pessoa = idPessoa+1
+    #print("estou na pessoa", pessoa)
+    mylist = ConnectionDB.retornaNTextosGeralTeste(pessoa)
+    vetor_saida = []
+    
+    positivo = 0
+    negativo = 0
+    neutro = 0
+    
+    prob_positivo = 0
+    prob_negativo = 0
+    prob_neutro = 0
+    
+    probs = []
+                    
+    i=0
+    nTextos = ConnectionDB.nmrTextosPorPessoaTeste(pessoa)
+    #print("nTextos da pessoa",nTextos)
+    #print(mylist)
+    
+    while i < nTextos:
+     #   print("to na iteração do while: ",i)
+        
+                
+        primeiroParse = mylist[i]
+        #print("primeiro parse", primeiroParse)
+        
+        segundoParse = primeiroParse["texto"]
+        primeiroParse.clear()
+        
+        terceiroParse = [segundoParse]
+        
+        valor_de_treino = vectorizer.transform(terceiroParse)
+        terceiroParse.clear()
+        vetor_saida = modelo.predict_proba(valor_de_treino)
+                
+        positivo += vetor_saida[0][0]
+        #print("passei pela iteracao {} da pessoa {}, valor alegrettl: {}".format(i, pessoa, alegria))
+        negativo += vetor_saida[0][1]
+        neutro += vetor_saida[0][2]
+        vetor_saida = []
+        #print("vet saida depois: ",vetor_saida)
+        i+=1  
+
+    mylist.clear()
+        
+    prob_positivo = positivo / nTextos
+    #print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
+    prob_negativo = negativo / nTextos
+    prob_neutro = neutro/nTextos
+    probs = [prob_positivo, prob_negativo,prob_neutro]
+    #print("probs = {}".format(probs))
+       
+    return probs
+
+
 
 def retornaVetor001(idPessoa): 
     pessoa = idPessoa+1
@@ -98,6 +155,57 @@ def retornaVetor001(idPessoa):
                     
     i=0
     nTextos = ConnectionDB.nmrTextosPorPessoa(pessoa)
+    #print("nTextos da pessoa",nTextos)
+    #print(mylist)
+    vetorTransformado = []
+    
+    while i < nTextos:
+     #   print("to na iteração do while: ",i)
+        
+                
+        primeiroParse = mylist[i]
+        #print("primeiro parse", primeiroParse)
+        
+        segundoParse = primeiroParse["texto"]
+        primeiroParse.clear()
+        
+        terceiroParse = [segundoParse]
+        
+        valor_de_treino = vectorizer.transform(terceiroParse)
+        terceiroParse.clear()
+        vetor_saida = modelo.predict_proba(valor_de_treino)
+        vetor_saida_descente = [vetor_saida[0][0],vetor_saida[0][1],vetor_saida[0][2]]
+        vetorTransformado = monta_vet_001(vetor_saida_descente)
+                        
+        positivo += vetorTransformado[0]
+        negativo += vetorTransformado[1]
+        neutro += vetorTransformado[2]
+        vetor_saida = []
+                
+        i+=1  
+    
+    vetorTransformado.clear()
+    mylist.clear()
+      
+    probs = [positivo, negativo, neutro]
+           
+    return probs
+
+def retornaVetor001Teste(idPessoa): 
+    pessoa = idPessoa+1
+    #print("estou na pessoa", pessoa)
+    mylist = ConnectionDB.retornaNTextosGeralTeste(pessoa)
+    vetor_saida = []
+    
+    positivo = 0
+    negativo = 0
+    neutro = 0
+    
+    
+    probs = []
+                    
+    i=0
+    nTextos = ConnectionDB.nmrTextosPorPessoaTeste(pessoa)
     #print("nTextos da pessoa",nTextos)
     #print(mylist)
     vetorTransformado = []

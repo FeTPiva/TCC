@@ -55,6 +55,15 @@ def obterLinhaTextoPOL(idPessoa):
     
 	return myresult[0][0]
 
+def obterLinhaTextoPOLTeste(idPessoa):
+	data = []	
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	myresult = mycursor.fetchall()
+	
+    
+	return myresult[0][0]
+
 
 def Tokenize(sentence):
     sentence = sentence.lower()
@@ -112,6 +121,17 @@ def polarizando(idPessoa):
             
     return polarization
 
+def polarizandoTeste(idPessoa):
+
+    segundoParse = ""
+    
+    pessoa = idPessoa+1
+    
+    segundoParse = obterLinhaTextoPOLTeste(pessoa)
+            
+    polarization = polarizandoCoisas(segundoParse)
+            
+    return polarization
 
 def polarizando7000(idTexto):
 

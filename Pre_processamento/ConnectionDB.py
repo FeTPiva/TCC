@@ -150,6 +150,7 @@ def retornaNTextosGeral(idPessoa):
 		data.append(jsonData)
 	return data
 
+
 #nmr de textos de cada pessoa
 def nmrTextosPorPessoa(idPessoa):
 	mycursor = mydb.cursor()
@@ -162,23 +163,35 @@ def nmrTextosPorPessoa(idPessoa):
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #PARA X TESTESSS:
 
-def obterLinhaTextoxTeste(idPessoa): 
-	data = []	
-	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
-	myresult = mycursor.fetchall()
-	for x in myresult:
-		x_correto = Corretor.correct_phrase(x[0])
-		
-	return x_correto
-
-
-def retornaNTextosGeral_xTeste(idPessoa):
+def retornaNTextosGeralTeste(idPessoa):
 		
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT texto FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
-		
-	return x_correto
+		jsonData = {
+			"texto": x_correto
+		}
+		data.append(jsonData)
+	return data
+
+def obterLinhaTextoTeste(idPessoa):  #Fernanda - versao antiga
+	data = []	
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])
+		jsonData = {
+			"texto": x_correto
+		}
+		data.append(jsonData)
+	return data
+
+
+def nmrTextosPorPessoaTeste(idPessoa):
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT COUNT(idPessoa) FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa))
+	myresult = mycursor.fetchone()
+	return myresult[0]
