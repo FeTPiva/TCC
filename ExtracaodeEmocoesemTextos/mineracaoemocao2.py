@@ -214,6 +214,43 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral(idPessoa):
        
     return probs
 
+
+def retorna_sent_frase_7000(idTexto): 
+    pessoa = idTexto+1
+    #print("estou na pessoa", pessoa)
+    mylist = ConnectionDB.obterLinhaFrase(pessoa)
+    vetor_saida = []
+    testestemming = []
+              
+    primeiroParse = mylist[0]        
+    segundoParse = primeiroParse["texto"]
+    primeiroParse.clear()
+
+    fraseteste = segundoParse
+                        
+    stemmer = nltk.stem.RSLPStemmer()
+
+    for (palavrastreinamento) in fraseteste.split():
+        comstem = [p for p in palavrastreinamento.split()]
+        testestemming.append(str(stemmer.stem(comstem[0])))
+
+    novo = extratorpalavras(testestemming)
+        
+    distribuicao = classificador.prob_classify(novo)
+       
+            
+    for classe in distribuicao.samples():
+                       
+        vetor_saida.append(distribuicao.prob(classe))
+
+    mylist.clear()
+       
+    return vetor_saida
+
+
+
+
+
 #PARA TESTEEEEEEE
 def retorna_Votacao_Emocao_Probabilidade_Por_Media_Geral_xTeste(idPessoa): 
     pessoa = idPessoa+1

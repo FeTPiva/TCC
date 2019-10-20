@@ -134,6 +134,79 @@ def retornaVetor001(idPessoa):
            
     return probs
 
+
+def retornaVetorProb7000(idTexto): 
+    pessoa = idTexto+1
+   
+    mylist = ConnectionDB.obterLinhaFrase(pessoa)
+    vetor_saida = []
+    positivo = 0
+    negativo = 0
+    neutro = 0
+       
+    probs = []        
+    primeiroParse = mylist[0]
+         
+    segundoParse = primeiroParse["texto"]
+    primeiroParse.clear()
+        
+    terceiroParse = [segundoParse]
+        
+    valor_de_treino = vectorizer.transform(terceiroParse)
+    terceiroParse.clear()
+    vetor_saida = modelo.predict_proba(valor_de_treino)
+                
+    positivo = vetor_saida[0][0]
+    
+    negativo = vetor_saida[0][1]
+    neutro = vetor_saida[0][2]
+    vetor_saida = []
+       
+    mylist.clear()       
+    
+    probs = [positivo,negativo,neutro]    
+    return probs
+
+
+def retornaVetor001_7000(idTexto): 
+    pessoa = idTexto+1
+   
+    mylist = ConnectionDB.obterLinhaFrase(pessoa)
+    vetor_saida = []
+    
+    positivo = 0
+    negativo = 0
+    neutro = 0   
+    
+    probs = []    
+    
+    vetorTransformado = []      
+                
+    primeiroParse = mylist[0]           
+    segundoParse = primeiroParse["texto"]
+    primeiroParse.clear()
+        
+    terceiroParse = [segundoParse]
+        
+    valor_de_treino = vectorizer.transform(terceiroParse)
+    terceiroParse.clear()
+    vetor_saida = modelo.predict_proba(valor_de_treino)
+    vetor_saida_descente = [vetor_saida[0][0],vetor_saida[0][1],vetor_saida[0][2]]
+    vetorTransformado = monta_vet_001(vetor_saida_descente)
+                        
+    positivo = vetorTransformado[0]
+    negativo = vetorTransformado[1]
+    neutro = vetorTransformado[2]
+    vetor_saida = []
+         
+    vetorTransformado.clear()
+    mylist.clear()
+      
+    probs = [positivo, negativo, neutro]
+         
+    return probs
+
+
     
 def monta_vet_001(valVetor):
     vetResult = []

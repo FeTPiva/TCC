@@ -24,6 +24,7 @@ def contandoCoisas(texto, arquivo):
     p = 0
     #TTL STOPWORDS
     s = 0
+    result = 0
     
     #palavraS
     palavraTxt = open(arquivo, 'r') #abri a 'base' com as palavras que estou em busca no text a ser analisado
@@ -36,19 +37,16 @@ def contandoCoisas(texto, arquivo):
     stoptxt.close()
 
     #TOKENIZANDO
-    palavra = Tokenize(palavra)
+    palavra = Tokenize(palavra)    
     stop = Tokenize(stop)
     texto = Tokenize(texto)
-
+    #print(texto)
+    
     #Stemmando
     palavra = Stemming(palavra)
     stop = Stemming(stop)
     texto = Stemming(texto)
 
-    #PRINTANDO
-    #print(palavra)
-    #print(stop)
-    #print(texto)
 
     #CONTANDO COISAS EFETIVAMENTE
     for i in texto :
@@ -61,14 +59,17 @@ def contandoCoisas(texto, arquivo):
      
     #TOTAL DE PALAVRAS
     ttlwords = len(texto)
-    
+   
     #MENOS AS STOP WORDS
-    ttlwords = ttlwords - s
-
     
-    #print(s)
-    #print('ttlwords', ttlwords)
-    return p/ttlwords
+    if ttlwords == s:
+        result = 0
+    else:
+        ttlwords = ttlwords - s
+        result = p/ttlwords
+    
+
+    return result
 
 def contandoCoisasPrint(texto, arquivo):
     return print(contandoCoisas(texto, arquivo))
@@ -105,6 +106,35 @@ def retornaContagem(idPessoa):
     #print("Contei palavras {} vezes = nPessoas".format(pessoa))
     return lista
 
+
+def retornaContagem7000(idTexto):
+    pronome = 'contagem_de_palavras/pronomes.txt'
+    absoluta = 'contagem_de_palavras/absoluta.txt'
+    triste = 'contagem_de_palavras/triste.txt'
+    #passar isso ^^ pro db depois
+    
+    segundoParse = ""
+    
+    pessoa = idTexto+1
+    
+    mylist = ConnectionDB.obterLinhaFrase(pessoa)
+        
+    primeiroParse = mylist[0]
+    #print(mylist)
+    #print(primeiroParse)   
+          
+    segundoParse = primeiroParse["texto"]
+    #print(segundoParse)
+    isDepre = primeiroParse["isDepressivo"]
+    primeiroParse.clear()
+       
+    textoTratado1 = contandoCoisas(segundoParse ,pronome)
+    textoTratado2 = contandoCoisas(segundoParse,absoluta)
+    textoTratado3 = contandoCoisas(segundoParse,triste)
+
+    lista = criaLista(textoTratado1, textoTratado2, textoTratado3, isDepre)
+        
+    return lista
 
 def criaLista(*args):
     lista = []

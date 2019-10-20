@@ -2,6 +2,7 @@ import nltk
 from nltk.stem import RSLPStemmer
 #import Pre_processamento.ConnectionDB as ConnectionDB
 import mysql.connector
+import Pre_processamento.ConnectionDB as ConnectionDB
 
 mydb = mysql.connector.connect(
 host="localhost",
@@ -111,6 +112,19 @@ def polarizando(idPessoa):
             
     return polarization
 
+
+def polarizando7000(idTexto):
+
+    segundoParse = ""
+    
+    pessoa = idTexto+1
+    
+    primeiroParse = ConnectionDB.obterLinhaFrase(pessoa)
+    segundoParse = primeiroParse[0]["texto"]
+    primeiroParse.clear()    
+    polarization = polarizandoCoisas(segundoParse)
+    
+    return polarization
 
 def criaLista(*args):
     lista = []
