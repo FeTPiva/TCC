@@ -23,7 +23,7 @@ print("Processando....")
 c = ConnectionDB.totalPessoas()
 
 #iterator
-x=0
+x=233
 
 #loop principal
 
@@ -61,7 +61,7 @@ while x < c:
     probs_csv = contagem.criaLista(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos7[0], sentimentos7[1],sentimentos7[2],sentimentos7[3],sentimentos7[4],sentimentos7[5], sentimentos3[0], sentimentos3[1], sentimentos3[2],sentimentos3v2[0],sentimentos3v2[1],sentimentos3v2[2], pol, contagem_palavras[3])
 
     #gerando o csv    
-    with open('resultados_pre_processamento/resultados_final_01.csv', 'a', newline = '') as myfile:
+    with open('resultados_pre_processamento/csv_de_teste.csv', 'a', newline = '') as myfile:
         wr = csv.writer(myfile)
         wr.writerow(probs_csv)   
     

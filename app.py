@@ -6,6 +6,7 @@ from tensorflow.keras import layers, Sequential
 import os
 import numpy as np
 from flask_cors import CORS
+import backTestes as bt
 
 db_buffer = mysql.connector.connect(
   host="localhost",
@@ -60,6 +61,15 @@ def get_predict():
     #y_pred = model.predict()
     #print(x_pred.shape)
     #return {"msg" : "sucesso"},200
+
+    #vetor com xteste do banco de dados - tipo assim, pra uma frase padrão q ta lá
+    result = bt.predictKeras(bt.geraVetorResultados())   
+
+    algumVetorDoPreProcessamento = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+    result2 = bt.predictKeras(algumVetorDoPreProcessamento)
+
+
+
 
     return jsonify({"isDepressivo": 0, "acuracia": 90.6}), 200
 if __name__ == '__main__':

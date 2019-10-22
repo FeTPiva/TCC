@@ -6,6 +6,8 @@ import numpy as np
 import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao7
 import ExtracaodeEmocoesemTextos.mineracao_emocao3 as mineracao_emocao3
 import contagem_de_palavras.polaridade as polaridade
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
 
 def geraVetorResultados():
     #pega a função predefinida no banco de dds e ai retorna o vetor tratado
@@ -36,19 +38,27 @@ def geraVetorResultados():
 
 def predictKeras(vetor):
     #o vetor ali é o q vem do pré processamneto(probs teste)
-    vet1 = [vetor]
-    test  = np.asarray(vet1)
-    print(test)
+    lista = []
+    
     model = load_model('models/model75.h5')
-
     model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+    dft = pd.read_csv("resultados_pre_processamento/csv_de_teste.csv")
+    xteste_ = dft.values[:, 0: 16] 
+    yteste_ = dft.values[:, 16]
 
-    result = model.predict(test)
-    result2 = model.predict_classes(test)
+    lista = xteste_.tolist()
+    lista.append(vetor)
+    xteste_np = np.asarray(lista)
+
+    sc = StandardScaler()
+    xteste = sc.fit_transform(xteste_np)
+    result_teste = model.predict_classes(xteste)
+    result_teste2 = model.predict(xteste)
+    
     #mano se isso roda de primeira vou sair dando cambalhota pela maua
-    print(result[0][0])
-    print( result2[0][0])
-    return result
+    print(result_teste[54][0])
+    print( result_teste2[54][0])
+    return result_teste[54][0]
 
 a = geraVetorResultados()
 
