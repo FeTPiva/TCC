@@ -104,16 +104,12 @@ def retornaVetorProbTeste(idPessoa):
     #print(mylist)
     
     while i < nTextos:
-     #   print("to na iteração do while: ",i)
-        
+     #   print("to na iteração do while: ",i)        
                 
         primeiroParse = mylist[i]
-        #print("primeiro parse", primeiroParse)
+        #print("primeiro parse", primeiroParse)        
         
-        segundoParse = primeiroParse["texto"]
-        primeiroParse.clear()
-        
-        terceiroParse = [segundoParse]
+        terceiroParse = [primeiroParse]
         
         valor_de_treino = vectorizer.transform(terceiroParse)
         terceiroParse.clear()
@@ -217,10 +213,8 @@ def retornaVetor001Teste(idPessoa):
         primeiroParse = mylist[i]
         #print("primeiro parse", primeiroParse)
         
-        segundoParse = primeiroParse["texto"]
-        primeiroParse.clear()
         
-        terceiroParse = [segundoParse]
+        terceiroParse = [primeiroParse]
         
         valor_de_treino = vectorizer.transform(terceiroParse)
         terceiroParse.clear()

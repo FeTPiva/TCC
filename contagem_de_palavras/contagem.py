@@ -118,10 +118,9 @@ def retornaContagemTeste(idPessoa):
     
 
     mylist = ConnectionDB.obterLinhaTextoTeste(pessoa)
-    #with open(textoAnalisado, 'r') as document_text:
-    #    texto = document_text.read()
+    
     primeiroParse = mylist[0]
-      #  print("primeiro parse", primeiroParse)
+    
       
     segundoParse = primeiroParse["texto"]
     

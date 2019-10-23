@@ -166,20 +166,17 @@ def nmrTextosPorPessoa(idPessoa):
 def retornaNTextosGeralTeste(idPessoa):
 		
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
+	mycursor.execute("SELECT texto FROM tbl_buffer_teste WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
-		jsonData = {
-			"texto": x_correto
-		}
-		data.append(jsonData)
+		data.append(x_correto)
 	return data
 
 def obterLinhaTextoTeste(idPessoa):  #Fernanda - versao antiga
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_buffer_teste WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])
@@ -192,6 +189,6 @@ def obterLinhaTextoTeste(idPessoa):  #Fernanda - versao antiga
 
 def nmrTextosPorPessoaTeste(idPessoa):
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT COUNT(idPessoa) FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa))
+	mycursor.execute("SELECT COUNT(idPessoa) FROM tbl_buffer_teste WHERE idPessoa = %s ;"%(idPessoa))
 	myresult = mycursor.fetchone()
 	return myresult[0]

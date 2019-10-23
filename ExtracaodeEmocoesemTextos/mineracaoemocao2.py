@@ -243,17 +243,13 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_GeralTeste(idPessoa):
     #print(mylist)
     
     while i < nTextos:
-     #   print("to na iteração do while: ",i)
-             
-        
-                
+     #   print("to na iteração do while: ",i)        
+                        
         primeiroParse = mylist[i]
         #print("primeiro parse", primeiroParse)
-        
-        segundoParse = primeiroParse["texto"]
-        primeiroParse.clear()
 
-        fraseteste = segundoParse
+
+        fraseteste = primeiroParse
         #print("primeiro parse da iteracao {} : {}".format(i, primeiroParse))
                        
         stemmer = nltk.stem.RSLPStemmer()

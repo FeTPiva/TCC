@@ -7,6 +7,7 @@ import os
 import numpy as np
 from flask_cors import CORS
 import backTestes as bt
+import Pre_processamento.ConnectionDB as ConnectionDB
 
 db_buffer = mysql.connector.connect(
   host="localhost",
@@ -62,15 +63,24 @@ def get_predict():
     #print(x_pred.shape)
     #return {"msg" : "sucesso"},200
 
+
     #vetor com xteste do banco de dados - tipo assim, pra uma frase padrão q ta lá
-    result = bt.predictKeras(bt.geraVetorResultados())   
+    result = bt.predictKeras(bt.geraVetorResultados())
+    
 
     algumVetorDoPreProcessamento = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
     result2 = bt.predictKeras(algumVetorDoPreProcessamento)
+    
+    
+    id = 234
+
+    #textos pré pronto do db (tbl_xteste)
+    textos = ConnectionDB.retornaNTextosGeralTeste(id)   
+
+    #vai retorna o valor de probabilidade da pessoa ter depre ou n  - usar no caso de frases pré-definidas
+    result3 = bt.predictKerasbyId(id)
 
 
-
-
-    return jsonify({"isDepressivo": 0, "acuracia": 90.6}), 200
+    return jsonify({"isDepressivo": result, "acuracia": 74.9}), 200
 if __name__ == '__main__':
     app.run(debug=True)

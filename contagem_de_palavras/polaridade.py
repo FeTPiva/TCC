@@ -58,7 +58,7 @@ def obterLinhaTextoPOL(idPessoa):
 def obterLinhaTextoPOLTeste(idPessoa):
 	data = []	
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_xteste WHERE idPessoa= " + str(idPessoa)) 
+	mycursor.execute("SELECT GROUP_CONCAT(texto SEPARATOR ', ') FROM tbl_buffer_teste WHERE idPessoa= " + str(idPessoa)) 
 	myresult = mycursor.fetchall()
 	
     
