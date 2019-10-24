@@ -363,8 +363,6 @@ def retorna_Votacao_Emocao_Probabilidade_Por_Media_GeralTeste2(vetor):
         vetor_saida.clear()
         #print("vet saida depois: ",vetor_saida)
         i+=1  
-
-    vetor.clear()
         
     prob_alegria = alegria / nTextos
     #print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
