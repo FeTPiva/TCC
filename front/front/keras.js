@@ -2,10 +2,6 @@ $("#formFrases").submit(function(e) {
     e.preventDefault();
     sendRequest()
 })
-
-
-
-
 function sendRequest() {
     
     frases = []
@@ -20,7 +16,7 @@ function sendRequest() {
         frases
     }   
     $.post( url,frases, function( data ) {
-        console.log(data.acuracia)
+        console.log(data.isDepressivo)
     })
 }
 

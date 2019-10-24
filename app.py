@@ -13,6 +13,7 @@ print(keras.__version__)
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+
 @app.route('/depressao', methods=['POST'])
 def get_predict():
   result = 0.0
