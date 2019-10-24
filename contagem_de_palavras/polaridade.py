@@ -133,6 +133,22 @@ def polarizandoTeste(idPessoa):
             
     return polarization
 
+def polarizandoTeste2(vetor):
+
+    myStr = ""
+    
+    tamanho = len(vetor)
+    a = 0
+    while a <tamanho:
+        
+        myStr = vetor[a] + " , " + myStr
+        a+=1
+    
+    polarization = polarizandoCoisas(myStr)
+            
+    return polarization
+
+
 def polarizando7000(idTexto):
 
     segundoParse = ""

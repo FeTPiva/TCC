@@ -67,13 +67,14 @@ def predictKerasbyId(id):
     model = load_model('models/model75.h5')
     model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
     dft = pd.read_csv("resultados_pre_processamento/csv_de_teste.csv")
-    xteste_ = dft.values[:, 0: 16] 
+    xteste_2 = dft.values[:, 0: 16] 
     yteste_ = dft.values[:, 16]
 
     sc = StandardScaler()
-    xteste = sc.fit_transform(xteste_)
+    xteste = sc.fit_transform(xteste_2)
     result_teste = model.predict(xteste)
-       
+    result_teste2 = model.predict_classes(xteste)
+    print(result_teste2)   
     #print(result_teste[id][0])
     return result_teste[id][0]
 
@@ -81,4 +82,4 @@ def predictKerasbyId(id):
 #a = geraVetorResultados()
 #print(a)
 #predictKeras(a)
-#predictKerasbyId(3)
+#predictKerasbyId(0)

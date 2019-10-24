@@ -4,8 +4,9 @@ import ExtracaodeEmocoesemTextos.mineracaoemocao2 as mineracaoemocao
 import ExtracaodeEmocoesemTextos.mineracao_emocao3 as mineracaoemocao3
 import Pre_processamento.ConnectionDB as ConnectionDB
 
-
-a = ConnectionDB.retornaNTextosGeralTeste(234)
+vet = ["que dia bonito", "nossa estou tão feliz", "caramba meu", "eu eu eu "]
+#a = contagem.retornaContagemTeste2(vet)
+a = polaridade.polarizandoTeste2(vet)
 print(a)
 
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Detectando Sinais Depressivos</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/simb.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="akameNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="index.html">Detector
+                            <img src="img/core-img/simb.png" alt="Setembro Amarelo Laço">
+                        </a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap">
+                                    <span class="top"></span>
+                                    <span class="bottom"></span>
+                                </div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active">
+                                        <a href="./index.html">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="./depressao.html">O que é depressão?</a>
+                                    </li>
+                                    <li>
+                                        <a href="./sobre_nos.html">Sobre nós</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <section>
+        <div class="container">
+            <div style="padding-top: 60px;"></div>
+            <div class="row">
+                <form method="POST" class="col-md-8" id="formFrases">
+                    <div class="form-group" id="frases">
+                        <h4>Frases:</h4>
+                        <input type="text" name="fraseUm" id="fraseUm" required size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDois" id="fraseDois" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseTres" id="fraseTres" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseQuatro" id="fraseQuatro" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseCinco" id="fraseCinco" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseSeis" id="fraseSeis" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseSete" id="fraseSete" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseOito" id="fraseOito" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseNove" id="fraseNove" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDez" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseOnze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDoze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseTreze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseQuatorze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseQuinze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDezesseis" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDezesete" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDezoito" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDez" id="fraseDezenove" size="80" style="margin-bottom: 2px" class="form-control">
+                        <input type="text" name="fraseDez" id="fraseVinte" size="80" style="margin-bottom: 2px" class="form-control">
+
+                    </div>
+                </form>
+                <div class="col-xl-3" style="align-self: center">
+                    <div style="padding-top: 20px; display: inline; " class="my-2">
+                        <button type="submit" class="btn " style="background-color: orange; ">Detectar</button>
+                    </div>
+                    <div style="padding-top: 20px; display: inline;">
+                        <button type="reset" class="btn " style="background-color: orange" onclick="gerarFrases()">Gerar Frases
+                        </button>
+                    </div>
+                    <div id="resultKeras">
+                        <p>
+                            <h5>Resultados</h5>
+                        </p>
+                        <p>Depressão: </p>
+                        <p>Precisão: </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="breadcrumb-area " style="padding: 30px">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- All JS Files -->
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Popper -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- All Plugins -->
+    <!-- Active -->
+    <script src="js/default-assets/active.js"></script>
+    <script src="keras.js"></script>
+
+</body>
+
+</html>

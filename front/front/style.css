@@ -51,6 +51,12 @@ Last Update: Jan 19, 2018
 
 #akameNav{
   /*position: sticky*/
+  
+  color: white !important;
+}
+
+#pgInicial{
+  background-image: url("./img/cereber.png")
 
 }
 
@@ -59,7 +65,11 @@ body {
   font-weight: 400;
   font-size: 16px;
   position: relative;
-  z-index: auto; }
+  z-index: auto;
+  background-color: black !important;
+  color: azure !important;  
+
+}
 
 h1,
 h2,

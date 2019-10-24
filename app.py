@@ -75,7 +75,7 @@ def get_predict():
     id = 234
 
     #textos pré pronto do db (tbl_xteste)
-    textos = ConnectionDB.retornaNTextosGeralTeste(id)   
+    textos = ConnectionDB.retornaNTextosGeralTeste(id)
 
     #vai retorna o valor de probabilidade da pessoa ter depre ou n  - usar no caso de frases pré-definidas
     result3 = bt.predictKerasbyId(id)

@@ -135,7 +135,29 @@ def retornaContagemTeste(idPessoa):
     #print("Contei palavras {} vezes = nPessoas".format(pessoa))
     return lista
 
+def retornaContagemTeste2(vetor):
+    pronome = 'contagem_de_palavras/pronomes.txt'
+    absoluta = 'contagem_de_palavras/absoluta.txt'
+    triste = 'contagem_de_palavras/triste.txt'
+ 
+    myStr = ""
+    #print(vetor)
+    tamanho = len(vetor)
+    a = 0
+    while a <tamanho:
+        #print(myStr)
+        myStr = vetor[a] + " , " + myStr
+        a+=1
+    
+          
+    textoTratado1 = contandoCoisas(myStr ,pronome)
+    textoTratado2 = contandoCoisas(myStr,absoluta)
+    textoTratado3 = contandoCoisas(myStr,triste)
 
+    #print(textoTratado1, textoTratado2, textoTratado3, idDepre)
+    lista = criaLista(textoTratado1, textoTratado2, textoTratado3)
+    #print("Contei palavras {} vezes = nPessoas".format(pessoa))
+    return lista
 
 
 def retornaContagem7000(idTexto):
