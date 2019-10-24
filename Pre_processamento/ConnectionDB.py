@@ -192,3 +192,13 @@ def nmrTextosPorPessoaTeste(idPessoa):
 	mycursor.execute("SELECT COUNT(idPessoa) FROM tbl_buffer_teste WHERE idPessoa = %s ;"%(idPessoa))
 	myresult = mycursor.fetchone()
 	return myresult[0]
+
+def retornaTextosGeralTeste(idPessoa):
+		
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT texto FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
+	myresult = mycursor.fetchall()
+	for x in myresult:
+		x_correto = Corretor.correct_phrase(x[0])
+		data.append(x_correto)
+	return data

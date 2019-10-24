@@ -4,7 +4,10 @@ $("#formFrases").submit(function(e) {
 })
 
 
+
+
 function sendRequest() {
+    
     frases = []
     url = "http://localhost:5000/depressao"
     $('input[type="text"]').each(function () {
@@ -15,22 +18,20 @@ function sendRequest() {
 
     data = {
         frases
-    }
-
+    }   
     $.post( url,frases, function( data ) {
-        
-    });
+        console.log(data.acuracia)
+    })
 }
 
 function gerarFrases() {
-    frasesNeutras = ["", "", "", "", "", "", "", "", "", ""]
-    frasesDepressivas = ["", "", "", "", "", "", "", "", "", ""]
-    frasesNaoDepressivas = ["", "", "", "", "", "", "", "", "", ""]
-    $('input[type="radio"]').each(function () {
-        if ($(this).is(":checked")) {
-            radio = $(this).val()
-        }
+    idPessoa = Math.floor(Math.random() * 287) + 234; // 288
+    url = "http://localhost:5000/getFrases"
+    data = {
+        "id":idPessoa
+    }
+    $.post( url,data, function( data ) {
+        
     });
-    console.log(radio)
 }
 

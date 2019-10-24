@@ -135,7 +135,7 @@ def retornaVetorProbTeste(idPessoa):
     return probs
 
 def retornaVetorProbTeste2(mylist): 
-   
+    print(mylist)
     vetor_saida = []
     
     positivo = 0
@@ -152,7 +152,6 @@ def retornaVetorProbTeste2(mylist):
     nTextos = len(mylist)
     #print("nTextos da pessoa",nTextos)
     #print(mylist)
-    
     while i < nTextos:
      #   print("to na iteração do while: ",i)        
                 
@@ -172,8 +171,6 @@ def retornaVetorProbTeste2(mylist):
         vetor_saida = []
         #print("vet saida depois: ",vetor_saida)
         i+=1  
-
-    mylist.clear()
         
     prob_positivo = positivo / nTextos
     #print("Alegria: {}, nTextos: {}, prob_alegr: {}".format(alegria, nTextos,  prob_alegria))
