@@ -26,58 +26,33 @@
     <!-- /Preloader -->
 
     <!-- Header Area Start -->
-    <header class="header-area">
-        <!-- Main Header Start -->
-        <div class="main-header-area">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Classy Menu -->
-                    <nav class="classy-navbar justify-content-between" id="akameNav">
+    <header>
+        <nav class="navbar navbar-dark bg-primary justify-content-between fixed-top" style="background-color: black !important;">
+            <a class="nav-brand superHover" href="index.html" style="color: lightgray !important;">
+                <img src="img/simb.png" width="40" height="40">
+            </a>
 
-                        <!-- Logo -->
-                        <a class="nav-brand" href="index.html">Detector
-                            <img src="img/core-img/simb.png" alt="Setembro Amarelo Laço">
-                        </a>
 
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
+            <div class="classynav">
+                <ul id="nav">
+                    <li>
+                        <a href="./index.html" style="color: lightgray !important; " class="superHover">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="./gerar.html" style="color: lightgray !important;" id="testeHover" class="superHover">Prever</a>
+                    </li>
 
-                        <!-- Menu -->
-                        <div class="classy-menu">
-                            <!-- Menu Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap">
-                                    <span class="top"></span>
-                                    <span class="bottom"></span>
-                                </div>
-                            </div>
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul id="nav">
-                                    <li class="active">
-                                        <a href="./index.html">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="./depressao.html">O que é depressão?</a>
-                                    </li>
-                                    <li>
-                                        <a href="./sobre_nos.html">Sobre nós</a>
-                                    </li>
+                    <li>
+                        <a href="./depressao.html" style="color: lightgray !important;" class="superHover">O que é depressão?</a>
+                    </li>
+                    <li>
+                        <a href="./sobre_nos.html" style="color: lightgray !important;" class="superHover">Sobre nós</a>
+                    </li>
 
-                                </ul>
-                            </div>
-                            <!-- Nav End -->
-                        </div>
-                    </nav>
-                </div>
+                </ul>
             </div>
-        </div>
+        </nav>
+
     </header>
     <!-- Header Area End -->
 
@@ -85,30 +60,70 @@
         <div class="container">
             <div style="padding-top: 60px;"></div>
             <div class="row">
-                <form method="POST" class="col-md-8" id="formFrases">
+                <form method="POST" class="col-md-8" id="formFrases" style="padding-right: 6%">
                     <div class="form-group" id="frases">
-                        <h4>Frases:</h4>
-                        <input type="text" name="fraseUm" id="fraseUm" required size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDois" id="fraseDois" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseTres" id="fraseTres" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseQuatro" id="fraseQuatro" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseCinco" id="fraseCinco" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseSeis" id="fraseSeis" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseSete" id="fraseSete" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseOito" id="fraseOito" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseNove" id="fraseNove" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDez" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseOnze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDoze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseTreze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseQuatorze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseQuinze" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDezesseis" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDezesete" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDezoito" id="fraseDez" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDez" id="fraseDezenove" size="80" style="margin-bottom: 2px" class="form-control">
-                        <input type="text" name="fraseDez" id="fraseVinte" size="80" style="margin-bottom: 2px" class="form-control">
-
+                        <h1 style="color: lightgray; padding-bottom: 2%">Frases:</h1>
+                        <input type="text" name="fraseUm" id="fraseUm" required size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDois" id="fraseDois" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseTres" id="fraseTres" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseQuatro" id="fraseQuatro" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseCinco" id="fraseCinco" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseSeis" id="fraseSeis" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseSete" id="fraseSete" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseOito" id="fraseOito" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseNove" id="fraseNove" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDez" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseOnze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDoze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseTreze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseQuatorze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseQuinze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDezesseis" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDezesete" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDezoito" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDez" id="fraseDezenove" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDez" id="fraseVinte" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDez" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseOnze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDoze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseTreze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseQuatorze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseQuinze" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDezesseis" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDezesete" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDezoito" id="fraseDez" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+                        <input type="text" name="fraseDez" id="fraseDezenove" size="80" style="margin-bottom: 2px; background-color: transparent; color: lightgray !important;"
+                            class="form-control">
+             
                     </div>
                 </form>
                 <div class="col-xl-3" style="align-self: center">
@@ -121,7 +136,7 @@
                     </div>
                     <div id="resultKeras">
                         <p>
-                            <h5>Resultados</h5>
+                            <h5 style="color: lightgray">Resultados</h5>
                         </p>
                         <p>Depressão: </p>
                         <p>Precisão: </p>

@@ -20,8 +20,8 @@ def progress(count, total, suffix=''):
 print("Processando....")
 
 #Total de pessoas da base de dados para iterar
-c = ConnectionDB.totalPessoas()
-
+#c = ConnectionDB.totalPessoas()
+c = 287
 #iterator
 x=233
 

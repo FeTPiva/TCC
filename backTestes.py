@@ -20,7 +20,7 @@ def geraVetorResultados():
 
 
     sentimentos3 = mineracao_emocao3.retornaVetorProbTeste(0)
-    #print(sentimentos3) #ok
+    #print(sentimentos3) #ok 
 
 
     sentimentos3v2 = mineracao_emocao3.retornaVetor001Teste(0)

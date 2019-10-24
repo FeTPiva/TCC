@@ -6,8 +6,5 @@ import Pre_processamento.ConnectionDB as ConnectionDB
 
 vet = ["que dia bonito", "nossa estou tão feliz", "caramba meu", "eu eu eu "]
 #a = contagem.retornaContagemTeste2(vet)
-a = polaridade.polarizandoTeste2(vet)
+a = contagem.retornaContagem(286)
 print(a)
-
-
-
