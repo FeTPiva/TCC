@@ -12,7 +12,6 @@ print(tf.__version__)
 print(keras.__version__)
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-#app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/depressao', methods=['POST'])
 @cross_origin(origin='*')
@@ -22,10 +21,8 @@ def get_predict():
   status_code = 200
   try:
     data = request.get_json()
-    print(data)
     if len(data["frases"]) > 0:
         result = bt.predictKeras(bt.geraVetorResultados2(data["frases"]))
-        print(result)
     else:
         erro = {"Message": "Erro ao ler JSON... Algum atributo está inválido!"}
         status_code = 400
@@ -39,11 +36,9 @@ def get_predict():
 @cross_origin(origin='*')
 def getFrases(id):
   if id != None:
-
     idKeras = id - 233
     textos = ConnectionDB.retornaTextosGeralTeste(id)
     result = bt.predictKerasbyId(idKeras)
-    print(textos)
     return jsonify({"frases":textos,"acuracia": 74.9, "isDepressivo": float(result)}), 200
   else:
     return {"Message": "Erro ao ler JSON... Algum atributo está inválido!"}, 400

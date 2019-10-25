@@ -5,7 +5,6 @@ $.ajaxSetup({
 function sendRequest() {
     frases = []
     url = "http://localhost:5000/depressao"
-    console.log("Estou aqui!!")
     $('input[type="text"]').each(function () {
         if ($(this).val() != "") {
             frases.push($(this).val())
@@ -17,7 +16,6 @@ function sendRequest() {
     $.post( url,JSON.stringify(dataFrases), function( data ) {
         $("#result").text(data.isDepressivo)
         $("#acuracia").text(data.acuracia)    
-        console.log("OK!")
     })
     .fail(function(response){
         alert("Erro ao obter resultado...")
@@ -25,21 +23,18 @@ function sendRequest() {
 }
 function gerarFrases() {
     idPessoa = Math.floor(Math.random() * (287-233)) + 233;
-    console.log(idPessoa)
     url = "http://localhost:5000/getFrases/"+idPessoa
     $('input[type="text"]').each(function () {
         $(this).attr('value','')
     })
     $.get( url,function( data ) {
         i = 0
-        console.log(data.frases)
         $("#result").text(data.isDepressivo)
         $("#acuracia").text(data.acuracia)
         $('input[type="text"]').each(function () {
             $(this).attr('value',data.frases[i])
             i += 1
         })
-    console.log("OK!")
     })
     .fail(function(response){
         alert("Erro ao obter resultado...")
