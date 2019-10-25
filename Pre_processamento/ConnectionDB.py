@@ -64,7 +64,7 @@ def obterLinhaTexto(idPessoa):  #Fernanda - versao antiga
 
 #retorno geral de textos limitando por ntextos, por cada pessoa v1
 def retornaNTextos(idPessoa, nTextos):
-		
+	data = []	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT texto, isDepressivo FROM textodepressao WHERE idPessoa = %s LIMIT %s ;"%(idPessoa, nTextos)) 
 	myresult = mycursor.fetchall()
@@ -123,7 +123,7 @@ def retornaTextosPorPessoaTokenContagem(idPessoa, nToken):
 
 #retorno geral de textos limitando por palavras, por cada pessoa - emocoes
 def retornaTextosPorNmrPalavrasEmocao(idPessoa, nToken):
-		
+	data = []	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT SUBSTRING_INDEX(texto," ",%s), isDepressivo FROM textodepressao WHERE idPessoa = %s ;"%(nToken,idPessoa)) 
 	myresult = mycursor.fetchall()
@@ -138,7 +138,7 @@ def retornaTextosPorNmrPalavrasEmocao(idPessoa, nToken):
 
 #retorno textos por pessoa sem filtro - pt pra emocoes
 def retornaNTextosGeral(idPessoa):
-		
+	data = []	
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT texto FROM textodepressao WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
@@ -164,7 +164,7 @@ def nmrTextosPorPessoa(idPessoa):
 #PARA X TESTESSS:
 
 def retornaNTextosGeralTeste(idPessoa):
-		
+	data = []
 	mycursor = mydb.cursor()
 	mycursor.execute("SELECT texto FROM tbl_buffer_teste WHERE idPessoa = %s ;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
@@ -194,9 +194,9 @@ def nmrTextosPorPessoaTeste(idPessoa):
 	return myresult[0]
 
 def retornaTextosGeralTeste(idPessoa):
-		
+	data = []
 	mycursor = mydb.cursor()
-	mycursor.execute("SELECT texto FROM tbl_xteste WHERE idPessoa = %s ;"%(idPessoa)) 
+	mycursor.execute("SELECT texto FROM tbl_xteste WHERE idPessoa = %s LIMIT 30;"%(idPessoa)) 
 	myresult = mycursor.fetchall()
 	for x in myresult:
 		x_correto = Corretor.correct_phrase(x[0])

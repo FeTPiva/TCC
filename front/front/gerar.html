@@ -128,7 +128,7 @@
                 </form>
                 <div class="col-xl-3" style="align-self: center">
                     <div style="padding-top: 20px; display: inline; " class="my-2">
-                        <button type="submit" class="btn " style="background-color: orange; ">Detectar</button>
+                        <button type="reset" class="btn " style="background-color: orange; " id="sendRequest">Detectar</button>
                     </div>
                     <div style="padding-top: 20px; display: inline;">
                         <button type="reset" class="btn " style="background-color: orange" onclick="gerarFrases()">Gerar Frases
@@ -138,8 +138,8 @@
                         <p>
                             <h5 style="color: lightgray">Resultados</h5>
                         </p>
-                        <p>Depressão: </p>
-                        <p>Precisão: </p>
+                        <p>Depressão: <span id="result"></span></p>
+                        <p>Precisão: <span id="acuracia"></span></p>
                     </div>
                 </div>
             </div>

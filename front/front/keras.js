@@ -1,33 +1,61 @@
-$("#formFrases").submit(function(e) {
-    e.preventDefault();
-    sendRequest()
-})
+$.ajaxSetup({
+    contentType: "application/json; charset=utf-8"
+});
+
 function sendRequest() {
-    
     frases = []
     url = "http://localhost:5000/depressao"
+    console.log("Estou aqui!!")
     $('input[type="text"]').each(function () {
         if ($(this).val() != "") {
             frases.push($(this).val())
         }
     });
-
-    data = {
+    dataFrases = {
         frases
     }   
-    $.post( url,frases, function( data ) {
-        console.log(data.isDepressivo)
+    $.post( url,JSON.stringify(dataFrases), function( data ) {
+        $("#result").text(data.isDepressivo)
+        $("#acuracia").text(data.acuracia)    
+        console.log("OK!")
+    })
+    .fail(function(response){
+        alert("Erro ao obter resultado...")
     })
 }
-
 function gerarFrases() {
-    idPessoa = Math.floor(Math.random() * 287) + 234; // 288
-    url = "http://localhost:5000/getFrases"
-    data = {
-        "id":idPessoa
-    }
-    $.post( url,data, function( data ) {
-        
-    });
+    idPessoa = Math.floor(Math.random() * (287-233)) + 233;
+    console.log(idPessoa)
+    url = "http://localhost:5000/getFrases/"+idPessoa
+    $('input[type="text"]').each(function () {
+        $(this).attr('value','')
+    })
+    $.get( url,function( data ) {
+        i = 0
+        console.log(data.frases)
+        $("#result").text(data.isDepressivo)
+        $("#acuracia").text(data.acuracia)
+        $('input[type="text"]').each(function () {
+            $(this).attr('value',data.frases[i])
+            i += 1
+        })
+    console.log("OK!")
+    })
+    .fail(function(response){
+        alert("Erro ao obter resultado...")
+    }) 
 }
 
+$("#sendRequest").click(function(e) {
+    e.preventDefault();
+    setTimeout(function(){
+        sendRequest()
+    },1000)
+})
+$("#gerarFrases").click(function(e){
+    e.preventDefault()
+    setTimeout(function(){gerarFrases()}, 1000)
+})
+
+//287 --> 54
+//234 --> 0
