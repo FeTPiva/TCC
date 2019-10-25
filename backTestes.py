@@ -39,21 +39,15 @@ def geraVetorResultados2(vetor):
     contagem_palavras = contagem.retornaContagemTeste2(vetor)
     sentimentos7 = mineracaoemocao7.retorna_Votacao_Emocao_Probabilidade_Por_Media_GeralTeste2(vetor)
     sentimentos3 = mineracao_emocao3.retornaVetorProbTeste2(vetor)
-    print(sentimentos3)
 
     
     sentimentos3v2 = mineracao_emocao3.retornaVetor001Teste2(vetor)
-    print(sentimentos3v2)
 
 
     pol = polaridade.polarizandoTeste2(vetor)
-    print(pol)
     
     #juntando a macaronada
     probs_teste = contagem.criaLista(contagem_palavras[0], contagem_palavras[1], contagem_palavras[2], sentimentos7[0], sentimentos7[1],sentimentos7[2],sentimentos7[3],sentimentos7[4],sentimentos7[5], sentimentos3[0], sentimentos3[1], sentimentos3[2],sentimentos3v2[0],sentimentos3v2[1],sentimentos3v2[2], pol)
-
-    #print(probs_teste)
-    print(probs_teste)
 
     return probs_teste
 
@@ -96,7 +90,6 @@ def predictKerasbyId(id):
     xteste = sc.fit_transform(xteste_2)
     result_teste = model.predict(xteste)
     result_teste2 = model.predict_classes(xteste)
-    print(result_teste2)   
     #print(result_teste[id][0])
     return result_teste[id][0]
 
