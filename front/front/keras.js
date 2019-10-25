@@ -13,6 +13,8 @@ function sendRequest() {
     dataFrases = {
         frases
     }   
+    $("#result").text("...")
+    $("#acuracia").text("...")
     $.post( url,JSON.stringify(dataFrases), function( data ) {
         $("#result").text(data.isDepressivo)
         $("#acuracia").text(data.acuracia)    
@@ -27,6 +29,8 @@ function gerarFrases() {
     $('input[type="text"]').each(function () {
         $(this).attr('value','')
     })
+    $("#result").text("...")
+    $("#acuracia").text("...")
     $.get( url,function( data ) {
         i = 0
         $("#result").text(data.isDepressivo)
