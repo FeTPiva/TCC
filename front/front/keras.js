@@ -27,7 +27,7 @@ function gerarFrases() {
     idPessoa = Math.floor(Math.random() * (287-233)) + 233;
     url = "http://localhost:5000/getFrases/"+idPessoa
     $('input[type="text"]').each(function () {
-        $(this).attr('value','')
+        $(this).val('')
     })
     $("#result").text("...")
     $("#acuracia").text("...")
@@ -36,13 +36,21 @@ function gerarFrases() {
         $("#result").text(data.isDepressivo)
         $("#acuracia").text(data.acuracia)
         $('input[type="text"]').each(function () {
-            $(this).attr('value',data.frases[i])
+            $(this).val(data.frases[i])
             i += 1
         })
     })
     .fail(function(response){
         alert("Erro ao obter resultado...")
     }) 
+}
+
+function limparFrases(){
+    $('input[type="text"]').each(function () {
+        $(this).val("")
+    })
+    $("#result").text("")
+    $("#acuracia").text("")
 }
 
 $("#sendRequest").click(function(e) {
@@ -55,6 +63,9 @@ $("#gerarFrases").click(function(e){
     e.preventDefault()
     setTimeout(function(){gerarFrases()}, 1000)
 })
-
-//287 --> 54
-//234 --> 0
+$("#limpar").click(function(e){
+    e.preventDefault()
+    setTimeout(function(){
+        limparFrases()
+    },1000)
+})
